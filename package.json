@@ -3,9 +3,10 @@
   "displayName": "Universal Commit Assistant",
   "version": "1.0.0",
   "description": "Universal AI-powered commit message generator supporting multiple providers and languages (OpenAI, Anthropic, Gemini, Mistral, Ollama, LM Studio, OpenRouter)",
-  "icon": "logo.png",
   "categories": [
-    "Other"
+    "Other",
+    "Machine Learning",
+    "SCM Providers"
   ],
   "keywords": [
     "git",
@@ -19,7 +20,15 @@
     "automation",
     "assistant",
     "universal",
-    "multilingual"
+    "multilingual",
+    "conventional-commits",
+    "source-control",
+    "lm-studio",
+    "openrouter",
+    "commit-message",
+    "productivity",
+    "devtools",
+    "vscode-extension"
   ],
   "homepage": "https://github.com/gianged/universal-commit-assistant",
   "bugs": {
@@ -266,5 +275,6 @@
   },
   "engines": {
     "vscode": "^1.104.0"
-  }
+  },
+  "icon": "logo.png"
 }
