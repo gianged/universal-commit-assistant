@@ -1,7 +1,7 @@
 {
   "name": "universal-commit-assistant",
   "displayName": "Universal Commit Assistant",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Universal AI-powered commit message generator supporting multiple providers and languages (OpenAI, Anthropic, Gemini, Mistral, Ollama, LM Studio, OpenRouter)",
   "categories": [
     "Other",
