@@ -1,0 +1,49 @@
+# Development and IDE files
+.vscode/**
+.vscode-test/**
+.vscode/settings.json
+.vscode/launch.json
+.idea/
+
+# Source files (compiled to out/)
+src/**
+**/*.ts
+**/*.map
+
+# Configuration and build files
+tsconfig.json
+.eslintrc.json
+webpack.config.js
+.releaserc.json
+
+# Documentation and guides
+vsc-extension-quickstart.md
+.gitmessage
+CLAUDE.md
+PUBLISHING.md
+SETTINGS.md
+
+# Dependencies and build artifacts
+node_modules
+out/test/**
+*.tsbuildinfo
+.cache/
+.temp/
+.tmp/
+
+# Environment and secrets
+.env
+.env.*
+*.secret
+*.key
+
+# OS and misc files
+.DS_Store
+Thumbs.db
+*.log
+.gitignore
+.yarnrc
+
+# Claude and tooling
+.serena/**
+CLAUDE.md

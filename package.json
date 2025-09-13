@@ -1,0 +1,270 @@
+{
+  "name": "universal-commit-assistant",
+  "displayName": "Universal Commit Assistant",
+  "version": "1.0.0",
+  "description": "Universal AI-powered commit message generator supporting multiple providers and languages (OpenAI, Anthropic, Gemini, Mistral, Ollama, LM Studio, OpenRouter)",
+  "icon": "logo.png",
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "git",
+    "commit",
+    "ai",
+    "openai",
+    "anthropic",
+    "gemini",
+    "mistral",
+    "ollama",
+    "automation",
+    "assistant",
+    "universal",
+    "multilingual"
+  ],
+  "homepage": "https://github.com/gianged/universal-commit-assistant",
+  "bugs": {
+    "url": "https://github.com/gianged/universal-commit-assistant/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gianged/universal-commit-assistant.git"
+  },
+  "license": "MIT",
+  "publisher": "gianged",
+  "main": "./out/extension.js",
+  "scripts": {
+    "compile": "tsc -p ./",
+    "compile-web": "webpack",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "package-web": "webpack --mode production --devtool hidden-source-map",
+    "release:dry-run": "semantic-release --dry-run",
+    "semantic-release": "semantic-release",
+    "vscode:prepublish": "npm run package",
+    "watch": "tsc -watch -p ./",
+    "watch-web": "webpack --watch"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "universal-commit-assistant.generateCommitMessage",
+        "title": "Generate Universal Commit Message",
+        "icon": "$(sparkle)"
+      },
+      {
+        "command": "universal-commit-assistant.clearAllSecrets",
+        "title": "Universal Commit Assistant: Clear All API Keys",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "universal-commit-assistant.openSettings",
+        "title": "Universal Commit Assistant: Open Settings"
+      },
+      {
+        "command": "universal-commit-assistant.showSecretStatus",
+        "title": "Universal Commit Assistant: Show API Key Status"
+      }
+    ],
+    "configuration": [
+      {
+        "title": "General",
+        "properties": {
+          "universal-commit-assistant.provider": {
+            "type": "string",
+            "default": "openai",
+            "enum": [
+              "openai",
+              "anthropic",
+              "gemini",
+              "mistral",
+              "openrouter",
+              "ollama",
+              "lmstudio"
+            ],
+            "enumDescriptions": [
+              "OpenAI GPT models",
+              "Anthropic Claude models",
+              "Google Gemini models",
+              "Mistral AI models",
+              "OpenRouter proxy service",
+              "Local Ollama instance",
+              "Local LM Studio instance"
+            ],
+            "description": "AI provider to use for generating commit messages",
+            "order": 1
+          },
+          "universal-commit-assistant.messageStyle": {
+            "type": "string",
+            "default": "conventional",
+            "enum": [
+              "conventional",
+              "concise",
+              "detailed",
+              "custom"
+            ],
+            "enumDescriptions": [
+              "Conventional Commits format (type: description)",
+              "Short and concise messages",
+              "Detailed messages with context",
+              "Use custom prompt template"
+            ],
+            "description": "Style of commit messages to generate",
+            "order": 2
+          },
+          "universal-commit-assistant.language": {
+            "type": "string",
+            "default": "english",
+            "enum": [
+              "english",
+              "chinese",
+              "spanish",
+              "french",
+              "russian",
+              "japanese",
+              "korean",
+              "vietnamese"
+            ],
+            "enumDescriptions": [
+              "English",
+              "中文 (Chinese)",
+              "Español (Spanish)",
+              "Français (French)",
+              "Русский (Russian)",
+              "日本語 (Japanese)",
+              "한국어 (Korean)",
+              "Tiếng Việt (Vietnamese)"
+            ],
+            "description": "Language for generated commit messages",
+            "order": 3
+          },
+          "universal-commit-assistant.includeUnstaged": {
+            "type": "boolean",
+            "default": true,
+            "description": "Include unstaged changes when generating commit messages",
+            "order": 4
+          },
+          "universal-commit-assistant.customPrompt": {
+            "type": "string",
+            "default": "",
+            "description": "Custom prompt template for commit message generation (used when messageStyle is 'custom')",
+            "order": 5
+          },
+          "universal-commit-assistant.systemPrompt": {
+            "type": "string",
+            "default": "You are a helpful assistant that generates git commit messages. Generate clear, concise commit messages that follow best practices.",
+            "description": "Custom system prompt for AI providers",
+            "order": 6
+          },
+          "universal-commit-assistant.temperature": {
+            "type": "number",
+            "default": 0.3,
+            "minimum": 0,
+            "maximum": 2,
+            "description": "Temperature for AI responses (0 = deterministic, 2 = very creative)",
+            "order": 7
+          },
+          "universal-commit-assistant.maxTokens": {
+            "type": "number",
+            "default": 100,
+            "minimum": 50,
+            "maximum": 500,
+            "description": "Maximum tokens for generated commit messages",
+            "order": 8
+          },
+          "universal-commit-assistant.enableAnalytics": {
+            "type": "boolean",
+            "default": false,
+            "description": "Enable usage analytics (no sensitive data is collected)",
+            "order": 9
+          }
+        }
+      },
+      {
+        "title": "Cloud Providers",
+        "properties": {
+          "universal-commit-assistant.openai.model": {
+            "type": "string",
+            "default": "gpt-4o-mini",
+            "description": "OpenAI model to use"
+          },
+          "universal-commit-assistant.anthropic.model": {
+            "type": "string",
+            "default": "claude-3-5-haiku-20241022",
+            "description": "Anthropic model to use"
+          },
+          "universal-commit-assistant.gemini.model": {
+            "type": "string",
+            "default": "gemini-1.5-flash",
+            "description": "Gemini model to use"
+          },
+          "universal-commit-assistant.mistral.model": {
+            "type": "string",
+            "default": "mistral-small-latest",
+            "description": "Mistral model to use"
+          },
+          "universal-commit-assistant.openrouter.model": {
+            "type": "string",
+            "default": "openai/gpt-4o-mini",
+            "description": "OpenRouter model to use"
+          }
+        }
+      },
+      {
+        "title": "Local Providers",
+        "properties": {
+          "universal-commit-assistant.ollama.model": {
+            "type": "string",
+            "default": "llama3.2",
+            "description": "Ollama model to use"
+          },
+          "universal-commit-assistant.ollama.baseUrl": {
+            "type": "string",
+            "default": "http://localhost:11434",
+            "description": "Ollama server base URL"
+          },
+          "universal-commit-assistant.lmstudio.model": {
+            "type": "string",
+            "default": "llama-3.1-8b-instruct",
+            "description": "LM Studio model to use"
+          },
+          "universal-commit-assistant.lmstudio.baseUrl": {
+            "type": "string",
+            "default": "http://localhost:1234",
+            "description": "LM Studio server base URL"
+          }
+        }
+      }
+    ],
+    "menus": {
+      "scm/title": [
+        {
+          "command": "universal-commit-assistant.generateCommitMessage",
+          "when": "scmProvider == git",
+          "group": "navigation"
+        }
+      ]
+    }
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "dependencies": {
+    "axios": "^1.12.1"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/exec": "^7.1.0",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/github": "^11.0.6",
+    "@types/node": "24.3.3",
+    "@types/vscode": "^1.104.0",
+    "@vscode/vsce": "^3.6.0",
+    "semantic-release": "^24.2.8",
+    "ts-loader": "^9.5.4",
+    "typescript": "^5.9.2",
+    "webpack": "^5.101.3",
+    "webpack-cli": "^6.0.1"
+  },
+  "engines": {
+    "vscode": "^1.104.0"
+  }
+}

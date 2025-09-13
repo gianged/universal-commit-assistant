@@ -1,0 +1,26 @@
+# Conventional Commit Messages for Semantic Release
+#
+# Format: <type>(<scope>): <description>
+#
+# Types:
+# feat:     New feature (triggers minor version bump)
+# fix:      Bug fix (triggers patch version bump)
+# docs:     Documentation changes
+# style:    Code style changes (formatting, etc.)
+# refactor: Code refactoring
+# test:     Adding or updating tests
+# chore:    Maintenance tasks
+# ci:       CI/CD changes
+# perf:     Performance improvements
+#
+# BREAKING CHANGE: (triggers major version bump)
+# Add "BREAKING CHANGE: " in commit body or "!" after type
+#
+# Examples:
+# feat: add support for OpenRouter provider
+# fix: resolve API key validation issue
+# feat!: remove deprecated configuration options
+# docs: update installation instructions
+#
+# Body and footer are optional
+# Reference issues with: Closes #123
