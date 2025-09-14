@@ -1,7 +1,7 @@
 {
   "name": "universal-commit-assistant",
   "displayName": "Universal Commit Assistant",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Universal AI-powered commit message generator supporting multiple providers and languages (OpenAI, Anthropic, Gemini, Mistral, Ollama, LM Studio, OpenRouter)",
   "categories": [
     "Other",
@@ -111,9 +111,9 @@
               "custom"
             ],
             "enumDescriptions": [
-              "Conventional Commits format (type: description)",
-              "Short and concise messages",
-              "Detailed messages with context",
+              "Conventional Commits format with type prefix (feat:, fix:, docs:, etc.)",
+              "Very short messages without type prefix (max 50 characters)",
+              "Detailed multi-line messages with explanations and bullet points",
               "Use custom prompt template"
             ],
             "description": "Style of commit messages to generate",
@@ -159,7 +159,7 @@
           },
           "universal-commit-assistant.systemPrompt": {
             "type": "string",
-            "default": "You are a helpful assistant that generates git commit messages. Generate clear, concise commit messages that follow best practices.",
+            "default": "You are a git commit message generator. Return ONLY the commit message with no additional text, explanations, or prefixes.",
             "description": "Custom system prompt for AI providers",
             "order": 6
           },
@@ -173,8 +173,8 @@
           },
           "universal-commit-assistant.maxTokens": {
             "type": "number",
-            "default": 100,
-            "minimum": 50,
+            "default": 200,
+            "minimum": 100,
             "maximum": 500,
             "description": "Maximum tokens for generated commit messages",
             "order": 8

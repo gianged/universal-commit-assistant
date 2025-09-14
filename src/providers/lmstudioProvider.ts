@@ -11,9 +11,11 @@ export class LMStudioProvider extends BaseProvider {
     async generateCommitMessage(changes: string, options?: GenerationOptions): Promise<string> {
         const baseUrl = this.configManager.getLMStudioBaseUrl();
         const model = this.configManager.getLMStudioModel();
-        const maxTokens = options?.maxTokens || this.configManager.getMaxTokens();
+        const temperature = this.configManager.getTemperature();
+        const systemPrompt = this.configManager.getSystemPrompt();
         const style = options?.style || this.configManager.getMessageStyle();
         const language = this.configManager.getLanguage();
+        const maxTokens = options?.maxTokens || (style === 'detailed' ? 300 : this.configManager.getMaxTokens());
 
         const prompt = this.buildPrompt(changes, style, options?.customPrompt, language);
 
@@ -25,7 +27,7 @@ export class LMStudioProvider extends BaseProvider {
                     messages: [
                         {
                             role: 'system',
-                            content: 'You are a helpful assistant that generates git commit messages.'
+                            content: systemPrompt
                         },
                         {
                             role: 'user',
@@ -33,7 +35,7 @@ export class LMStudioProvider extends BaseProvider {
                         }
                     ],
                     max_tokens: maxTokens,
-                    temperature: 0.3
+                    temperature: temperature
                 },
                 {
                     headers: {
@@ -48,7 +50,7 @@ export class LMStudioProvider extends BaseProvider {
                 throw new Error('No response from LM Studio');
             }
 
-            return this.validateResponse(message);
+            return this.validateResponse(message, style);
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 if (error.code === 'ECONNREFUSED') {

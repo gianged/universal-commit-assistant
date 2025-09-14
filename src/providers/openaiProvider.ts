@@ -1,8 +1,9 @@
-import axios from 'axios';
 import * as vscode from 'vscode';
+
 import { BaseProvider } from './baseProvider';
-import { GenerationOptions } from '../types';
 import { ConfigurationManager } from '../utils/configurationManager';
+import { GenerationOptions } from '../types';
+import axios from 'axios';
 
 export class OpenAIProvider extends BaseProvider {
     private readonly API_KEY_SECRET = 'universal-commit-assistant.openai.apiKey';
@@ -17,11 +18,11 @@ export class OpenAIProvider extends BaseProvider {
     async generateCommitMessage(changes: string, options?: GenerationOptions): Promise<string> {
         const apiKey = await this.getApiKey();
         const model = this.configManager.getOpenAIModel();
-        const maxTokens = options?.maxTokens || this.configManager.getMaxTokens();
+        const temperature = this.configManager.getTemperature();
+        const systemPrompt = this.configManager.getSystemPrompt();
         const style = options?.style || this.configManager.getMessageStyle();
-        const temperature = options?.temperature || this.configManager.getTemperature();
-        const systemPrompt = options?.systemPrompt || this.configManager.getSystemPrompt();
         const language = this.configManager.getLanguage();
+        const maxTokens = options?.maxTokens || (style === 'detailed' ? 300 : this.configManager.getMaxTokens());
 
         const prompt = this.buildPrompt(changes, style, options?.customPrompt, language);
 
@@ -56,7 +57,7 @@ export class OpenAIProvider extends BaseProvider {
                 throw new Error('No response from OpenAI');
             }
 
-            return this.validateResponse(message);
+            return this.validateResponse(message, style);
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 throw new Error(`OpenAI API error: ${error.response?.data?.error?.message || error.message}`);

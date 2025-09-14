@@ -11,18 +11,24 @@ export class OllamaProvider extends BaseProvider {
     async generateCommitMessage(changes: string, options?: GenerationOptions): Promise<string> {
         const baseUrl = this.configManager.getOllamaBaseUrl();
         const model = this.configManager.getOllamaModel();
+        const temperature = this.configManager.getTemperature();
+        const systemPrompt = this.configManager.getSystemPrompt();
         const style = options?.style || this.configManager.getMessageStyle();
         const language = this.configManager.getLanguage();
 
-        const prompt = this.buildPrompt(changes, style, options?.customPrompt, language);
+        const userPrompt = this.buildPrompt(changes, style, options?.customPrompt, language);
+        const fullPrompt = `${systemPrompt}\n\nUser request: ${userPrompt}\n\nPlease respond with ONLY the commit message, no explanations or additional text.`;
 
         try {
             const response = await axios.post(
                 `${baseUrl}/api/generate`,
                 {
                     model,
-                    prompt,
-                    stream: false
+                    prompt: fullPrompt,
+                    stream: false,
+                    options: {
+                        temperature: temperature
+                    }
                 },
                 {
                     headers: {
@@ -37,7 +43,7 @@ export class OllamaProvider extends BaseProvider {
                 throw new Error('No response from Ollama');
             }
 
-            return this.validateResponse(message);
+            return this.validateResponse(message, style);
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 if (error.code === 'ECONNREFUSED') {

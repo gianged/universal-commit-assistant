@@ -8,16 +8,21 @@ import axios from "axios";
 export class OpenRouterProvider extends BaseProvider {
   private readonly API_KEY_SECRET = "universal-commit-assistant.openrouter.apiKey";
 
-  constructor(private readonly configManager: ConfigurationManager, private readonly secretStorage: vscode.SecretStorage) {
+  constructor(
+    private readonly configManager: ConfigurationManager,
+    private readonly secretStorage: vscode.SecretStorage
+  ) {
     super();
   }
 
   async generateCommitMessage(changes: string, options?: GenerationOptions): Promise<string> {
     const apiKey = await this.getApiKey();
     const model = this.configManager.getOpenRouterModel();
-    const maxTokens = options?.maxTokens || this.configManager.getMaxTokens();
+    const temperature = this.configManager.getTemperature();
+    const systemPrompt = this.configManager.getSystemPrompt();
     const style = options?.style || this.configManager.getMessageStyle();
     const language = this.configManager.getLanguage();
+    const maxTokens = options?.maxTokens || (style === 'detailed' ? 300 : this.configManager.getMaxTokens());
 
     const prompt = this.buildPrompt(changes, style, options?.customPrompt, language);
 
@@ -29,7 +34,7 @@ export class OpenRouterProvider extends BaseProvider {
           messages: [
             {
               role: "system",
-              content: "You are a helpful assistant that generates git commit messages.",
+              content: systemPrompt,
             },
             {
               role: "user",
@@ -37,27 +42,46 @@ export class OpenRouterProvider extends BaseProvider {
             },
           ],
           max_tokens: maxTokens,
-          temperature: 0.3,
+          temperature,
+          stream: false,
         },
         {
           headers: {
             Authorization: `Bearer ${apiKey}`,
             "Content-Type": "application/json",
-            "HTTP-Referer": "https://github.com/your-username/universal-commit-assistant",
+            "HTTP-Referer": "https://github.com/gianged/universal-commit-assistant",
             "X-Title": "Universal Commit Assistant",
           },
         }
       );
 
-      const message = response.data.choices[0]?.message?.content;
-      if (!message) {
-        throw new Error("No response from OpenRouter");
+      // Check if this is the generation tracking response instead of chat completion
+      if (response.data.generation_id || response.data.app_id) {
+        throw new Error("Received generation tracking response instead of chat completion. This may indicate an API issue.");
       }
 
-      return this.validateResponse(message);
+      if (!response.data?.choices?.length) {
+        throw new Error(`Invalid response format from OpenRouter. Received: ${JSON.stringify(response.data)}`);
+      }
+
+      const choice = response.data.choices[0];
+      
+      if (choice.finish_reason === "length") {
+        throw new Error("OpenRouter response was truncated due to token limit. Try increasing max_tokens in settings.");
+      }
+
+      const message = choice.message?.content;
+      if (!message) {
+        throw new Error(`No content in OpenRouter response. Choice data: ${JSON.stringify(choice)}`);
+      }
+
+      return this.validateResponse(message, style);
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        throw new Error(`OpenRouter API error: ${error.response?.data?.error?.message || error.message}`);
+        const errorMessage = error.response?.data?.error?.message || 
+                           error.response?.data?.message || 
+                           error.message;
+        throw new Error(`OpenRouter API error: ${errorMessage}`);
       }
       throw error;
     }

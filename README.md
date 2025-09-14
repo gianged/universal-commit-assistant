@@ -61,8 +61,33 @@ Universal AI-powered commit message generator supporting multiple providers and 
 ### Advanced Usage
 - **Custom Prompts**: Define your own prompt templates for specific project needs
 - **Multi-language**: Generate commit messages in your preferred language
+- **Message Styles**: Choose from conventional (with type prefix), concise (short, no prefix), detailed (multi-line), or custom formats
 - **Temperature Control**: Adjust AI creativity from deterministic (0) to very creative (2)
 - **Provider Switching**: Easily switch between different AI providers based on your needs
+
+### Detailed Message Style
+
+When using the **"detailed"** message style, the extension generates comprehensive multi-line commit messages with:
+
+- **Structured format** with title, description, and bullet points
+- **Detailed explanations** of what was changed and why
+- **Bold formatting** for section headers and key points
+- **Bullet point summaries** of specific improvements
+
+**Example output:**
+```
+fix: Handle date parsing and display in Excel export
+
+This commit addresses issues with date handling in the Excel export functionality.
+
+- **Improved Date Parsing:** Introduced a TryParseDate helper method to robustly parse various date string formats
+- **Correct Excel Date Formatting:** Modified export logic to explicitly handle DateTime values with "yyyy-mm-dd" format
+- **Updated Data Model:** Changed date-related properties from string to DateTime? for better type accuracy
+
+These changes improve the reliability and accuracy of date representation in exported reports.
+```
+
+**To enable:** Go to Settings → Extensions → Universal Commit Assistant → Set "Message Style" to "detailed"
 
 ## ⚙️ Configuration
 
@@ -71,10 +96,10 @@ Access settings via `File > Preferences > Settings`, then search for "Universal 
 ### Core Settings
 - **Provider**: Choose your AI provider (`openai`, `anthropic`, `gemini`, `mistral`, `ollama`, `lmstudio`, `openrouter`)
 - **Include Unstaged**: Whether to include unstaged changes in analysis
-- **Message Style**: `conventional`, `concise`, `detailed`, or `custom`
+- **Message Style**: `conventional` (with type prefix: feat:, fix:), `concise` (short, no prefix), `detailed` (multi-line with explanations), or `custom`
 - **Language**: Select from 8 supported languages
 - **Temperature**: Control AI creativity (0-2, default: 0.3)
-- **Max Tokens**: Maximum length for generated messages (50-500, default: 100)
+- **Max Tokens**: Maximum length for generated messages (100-500, default: 200)
 
 ### Provider-Specific Settings
 Each provider has its own configuration options for models and endpoints. See the [Settings Guide](SETTINGS.md) for detailed configuration instructions.

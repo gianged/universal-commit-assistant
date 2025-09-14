@@ -25,7 +25,7 @@ export class ConfigurationManager {
     }
 
     getMaxTokens(): number {
-        return this.getConfiguration().get('maxTokens', 100);
+        return this.getConfiguration().get('maxTokens', 200);
     }
 
     getTemperature(): number {
@@ -33,7 +33,7 @@ export class ConfigurationManager {
     }
 
     getSystemPrompt(): string {
-        return this.getConfiguration().get('systemPrompt', 'You are a helpful assistant that generates git commit messages. Generate clear, concise commit messages that follow best practices.');
+        return this.getConfiguration().get('systemPrompt', 'You are a git commit message generator. Return ONLY the commit message with no additional text, explanations, or prefixes.');
     }
 
     getLanguage(): Language {

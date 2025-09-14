@@ -17,9 +17,11 @@ export class MistralProvider extends BaseProvider {
     async generateCommitMessage(changes: string, options?: GenerationOptions): Promise<string> {
         const apiKey = await this.getApiKey();
         const model = this.configManager.getMistralModel();
-        const maxTokens = options?.maxTokens || this.configManager.getMaxTokens();
+        const temperature = this.configManager.getTemperature();
+        const systemPrompt = this.configManager.getSystemPrompt();
         const style = options?.style || this.configManager.getMessageStyle();
         const language = this.configManager.getLanguage();
+        const maxTokens = options?.maxTokens || (style === 'detailed' ? 300 : this.configManager.getMaxTokens());
 
         const prompt = this.buildPrompt(changes, style, options?.customPrompt, language);
 
@@ -31,7 +33,7 @@ export class MistralProvider extends BaseProvider {
                     messages: [
                         {
                             role: 'system',
-                            content: 'You are a helpful assistant that generates git commit messages.'
+                            content: systemPrompt
                         },
                         {
                             role: 'user',
@@ -39,7 +41,7 @@ export class MistralProvider extends BaseProvider {
                         }
                     ],
                     max_tokens: maxTokens,
-                    temperature: 0.3
+                    temperature: temperature
                 },
                 {
                     headers: {
@@ -54,7 +56,7 @@ export class MistralProvider extends BaseProvider {
                 throw new Error('No response from Mistral');
             }
 
-            return this.validateResponse(message);
+            return this.validateResponse(message, style);
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 throw new Error(`Mistral API error: ${error.response?.data?.error?.message || error.message}`);

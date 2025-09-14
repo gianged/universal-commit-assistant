@@ -17,10 +17,13 @@ export class GeminiProvider extends BaseProvider {
     async generateCommitMessage(changes: string, options?: GenerationOptions): Promise<string> {
         const apiKey = await this.getApiKey();
         const model = this.configManager.getGeminiModel();
+        const temperature = this.configManager.getTemperature();
+        const systemPrompt = this.configManager.getSystemPrompt();
         const style = options?.style || this.configManager.getMessageStyle();
         const language = this.configManager.getLanguage();
-        
-        const prompt = this.buildPrompt(changes, style, options?.customPrompt, language);
+
+        const userPrompt = this.buildPrompt(changes, style, options?.customPrompt, language);
+        const fullPrompt = `${systemPrompt}\n\nUser request: ${userPrompt}\n\nPlease respond with ONLY the commit message, no explanations or additional text.`;
 
         try {
             const response = await axios.post(
@@ -28,9 +31,12 @@ export class GeminiProvider extends BaseProvider {
                 {
                     contents: [{
                         parts: [{
-                            text: prompt
+                            text: fullPrompt
                         }]
-                    }]
+                    }],
+                    generationConfig: {
+                        temperature: temperature
+                    }
                 },
                 {
                     headers: {
@@ -44,7 +50,7 @@ export class GeminiProvider extends BaseProvider {
                 throw new Error('No response from Gemini');
             }
 
-            return this.validateResponse(message);
+            return this.validateResponse(message, style);
         } catch (error) {
             if (axios.isAxiosError(error)) {
                 throw new Error(`Gemini API error: ${error.response?.data?.error?.message || error.message}`);
