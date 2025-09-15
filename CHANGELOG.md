@@ -20,7 +20,25 @@
 
 * enable automated semantic releases ([c39e0e8](https://github.com/gianged/universal-commit-assistant/commit/c39e0e8d3168f61213c044f2763ea0d8fff8c3b7))
 
-# 1.0.0 (2025-09-15)
+## [1.0.2] - 2025-09-14
+
+### Fixed
+- Improved prompt styles and formatting across all AI providers
+- Enhanced provider configuration handling
+- Updated documentation with better setup instructions
+
+### Changed
+- Refined base provider architecture for better consistency
+- Improved OpenRouter provider with better error handling
+- Updated package metadata and keywords for better discoverability
+
+## [1.0.1] - 2025-09-13
+
+### Fixed
+- Package version number correction
+- Updated extension categories and tags for VS Code marketplace
+
+## [1.0.0] - 2025-09-13
 
 ### Added
 - Initial release of Universal Commit Assistant extension
