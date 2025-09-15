@@ -1,3 +1,10 @@
+# 1.0.0 (2025-09-15)
+
+
+### Bug Fixes
+
+* update dependencies to latest versions, and test automated release ([33873fe](https://github.com/gianged/universal-commit-assistant/commit/33873fe7d6b80e8f616fc6b1251ac1c32f2bfcbe))
+
 # Changelog
 
 All notable changes to the Universal Commit Assistant extension will be documented in this file.
