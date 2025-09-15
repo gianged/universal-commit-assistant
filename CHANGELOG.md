@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/gianged/universal-commit-assistant/compare/v1.1.0...v1.1.1) (2025-09-15)
+
+
+### Bug Fixes
+
+* update.vscodeignore and README.md, and test release bot ([0ca150f](https://github.com/gianged/universal-commit-assistant/commit/0ca150f50224885326307b9628d831ce79411157))
+
 # [1.1.0](https://github.com/gianged/universal-commit-assistant/compare/v1.0.0...v1.1.0) (2025-09-15)
 
 
