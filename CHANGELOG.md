@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/gianged/universal-commit-assistant/compare/v1.1.2...v1.1.3) (2025-09-15)
+
+
+### Bug Fixes
+
+* update CHANGELOG.md with new release notes and test automate bot ([b6ce960](https://github.com/gianged/universal-commit-assistant/commit/b6ce960d8811695f02fad21020d3d6ea83e92805))
+
 ## [1.1.2](https://github.com/gianged/universal-commit-assistant/compare/v1.1.1...v1.1.2) (2025-09-15)
 
 
