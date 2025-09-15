@@ -1,3 +1,11 @@
+## [1.1.2](https://github.com/gianged/universal-commit-assistant/compare/v1.1.1...v1.1.2) (2025-09-15)
+
+
+### Bug Fixes
+
+* add semantic-release npm plugin to update package.json version ([0750c51](https://github.com/gianged/universal-commit-assistant/commit/0750c51d9e99c57e6d3a8f78e65be957f3e0a34c))
+* disable npm publishing for VS Code extension ([5c28bd6](https://github.com/gianged/universal-commit-assistant/commit/5c28bd6192e415738475cffa97e6098706eec809))
+
 ## [1.1.1](https://github.com/gianged/universal-commit-assistant/compare/v1.1.0...v1.1.1) (2025-09-15)
 
 
