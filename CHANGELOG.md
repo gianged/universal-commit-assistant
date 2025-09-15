@@ -14,40 +14,6 @@
 
 # 1.0.0 (2025-09-15)
 
-
-### Bug Fixes
-
-* update dependencies to latest versions, and test automated release ([33873fe](https://github.com/gianged/universal-commit-assistant/commit/33873fe7d6b80e8f616fc6b1251ac1c32f2bfcbe))
-
-# Changelog
-
-All notable changes to the Universal Commit Assistant extension will be documented in this file.
-
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
-
-## [Unreleased]
-
-## [1.0.2] - 2025-09-14
-
-### Fixed
-- Improved prompt styles and formatting across all AI providers
-- Enhanced provider configuration handling
-- Updated documentation with better setup instructions
-
-### Changed
-- Refined base provider architecture for better consistency
-- Improved OpenRouter provider with better error handling
-- Updated package metadata and keywords for better discoverability
-
-## [1.0.1] - 2025-09-13
-
-### Fixed
-- Package version number correction
-- Updated extension categories and tags for VS Code marketplace
-
-## [1.0.0] - 2025-09-13
-
 ### Added
 - Initial release of Universal Commit Assistant extension
 - Support for multiple AI providers:
