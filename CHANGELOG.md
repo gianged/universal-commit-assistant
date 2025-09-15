@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/gianged/universal-commit-assistant/compare/v1.1.3...v1.1.4) (2025-09-15)
+
+
+### Bug Fixes
+
+* use vsce package to create VSIX file for marketplace publishing ([df66650](https://github.com/gianged/universal-commit-assistant/commit/df6665052914825cb4dcb355e9b258c425f204f6))
+
 ## [1.1.3](https://github.com/gianged/universal-commit-assistant/compare/v1.1.2...v1.1.3) (2025-09-15)
 
 
