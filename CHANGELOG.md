@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/gianged/universal-commit-assistant/compare/v1.0.0...v1.1.0) (2025-09-15)
+
+
+### Features
+
+* enable automated semantic releases ([c39e0e8](https://github.com/gianged/universal-commit-assistant/commit/c39e0e8d3168f61213c044f2763ea0d8fff8c3b7))
+
 # 1.0.0 (2025-09-15)
 
 
