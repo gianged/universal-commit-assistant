@@ -106,7 +106,7 @@ Each provider has its own configuration options for models and endpoints. See th
 
 ## 🔧 Requirements
 
-- **VS Code**: 1.74.0 or higher
+- **VS Code**: 1.104.0 or higher
 - **Git**: Repository with changes to commit
 - **API Key**: Required for cloud providers (OpenAI, Anthropic, Gemini, Mistral, OpenRouter)
 - **Local Server**: Required for local providers (Ollama, LM Studio)
