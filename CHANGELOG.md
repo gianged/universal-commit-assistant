@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/gianged/universal-commit-assistant/compare/v1.1.4...v1.2.0) (2025-09-20)
+
+
+### Features
+
+* **universal-commit-assistant:** add initial project files and configuration ([cb789a0](https://github.com/gianged/universal-commit-assistant/commit/cb789a09337caa1a346678e8e49ad36a8c740ff7))
+
 ## [1.1.4](https://github.com/gianged/universal-commit-assistant/compare/v1.1.3...v1.1.4) (2025-09-15)
 
 
