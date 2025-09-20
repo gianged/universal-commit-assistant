@@ -14,7 +14,7 @@ export interface GenerationOptions {
 export type MessageStyle = 'conventional' | 'concise' | 'detailed' | 'custom';
 export type Language = 'english' | 'chinese' | 'spanish' | 'french' | 'russian' | 'japanese' | 'korean' | 'vietnamese';
 
-export type ProviderType = 'openai' | 'anthropic' | 'gemini' | 'mistral' | 'openrouter' | 'ollama' | 'lmstudio';
+export type ProviderType = 'openai' | 'anthropic' | 'gemini' | 'mistral' | 'openrouter' | 'ollama' | 'lmstudio' | 'deepseek';
 
 export interface ProviderConfig {
     type: ProviderType;

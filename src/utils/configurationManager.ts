@@ -80,6 +80,10 @@ export class ConfigurationManager {
         return this.getConfiguration().get('openrouter.model', 'openai/gpt-4o-mini');
     }
 
+    getDeepSeekModel(): string {
+        return this.getConfiguration().get('deepseek.model', 'deepseek-chat');
+    }
+
     async updateConfiguration(key: string, value: any, target?: vscode.ConfigurationTarget): Promise<void> {
         const config = this.getConfiguration();
         await config.update(key, value, target || vscode.ConfigurationTarget.Global);

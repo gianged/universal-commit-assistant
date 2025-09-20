@@ -3,6 +3,7 @@ import * as vscode from "vscode";
 import { AIProvider } from "../types";
 import { AnthropicProvider } from "./anthropicProvider";
 import { ConfigurationManager } from "../utils/configurationManager";
+import { DeepSeekProvider } from "./deepseekProvider";
 import { GeminiProvider } from "./geminiProvider";
 import { LMStudioProvider } from "./lmstudioProvider";
 import { MistralProvider } from "./mistralProvider";
@@ -28,6 +29,8 @@ export class AIProviderFactory {
         return new GeminiProvider(this.configManager, this.context.secrets);
       case "mistral":
         return new MistralProvider(this.configManager, this.context.secrets);
+      case "deepseek":
+        return new DeepSeekProvider(this.configManager, this.context.secrets);
       case "ollama":
         return new OllamaProvider(this.configManager);
       case "lmstudio":

@@ -3,13 +3,12 @@
 [![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/gianged.universal-commit-assistant?style=flat-square&label=VS%20Code%20Marketplace&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=gianged.universal-commit-assistant)
 [![Downloads](https://img.shields.io/visual-studio-marketplace/d/gianged.universal-commit-assistant?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=gianged.universal-commit-assistant)
 [![Rating](https://img.shields.io/visual-studio-marketplace/r/gianged.universal-commit-assistant?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=gianged.universal-commit-assistant)
-[![Semantic Release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg?style=flat-square)](https://github.com/semantic-release/semantic-release)
 
 Universal AI-powered commit message generator supporting multiple providers and languages directly in VS Code.
 
 ## ✨ Features
 
-- **🤖 Multiple AI Providers**: Support for OpenAI, Anthropic, Gemini, Mistral, Ollama, LM Studio, and OpenRouter
+- **🤖 Multiple AI Providers**: Support for OpenAI, Anthropic, Gemini, Mistral, DeepSeek, Ollama, LM Studio, and OpenRouter
 - **🌍 Multi-Language Support**: Generate commit messages in 8 languages (English, Chinese, Spanish, French, Russian, Japanese, Korean, Vietnamese)
 - **⚡ Source Control Integration**: One-click button directly in VS Code's source control panel
 - **🎯 Flexible Context**: Choose to include staged changes only or both staged and unstaged changes
@@ -17,15 +16,18 @@ Universal AI-powered commit message generator supporting multiple providers and 
 - **🔒 Secure API Key Storage**: API keys are stored securely using VS Code's secret storage
 - **🏠 Offline Support**: Works with local models (Ollama, LM Studio) for privacy-conscious users
 - **⚙️ Highly Configurable**: Customize temperature, system prompts, token limits, and more
+- **🎛️ API Key Management**: Built-in commands to view API key status and clear stored keys
+- **📊 Usage Analytics**: Optional usage tracking (no sensitive data collected)
 
 ## 🤖 Supported Providers
 
 | Provider | Models | Type | Notes |
 |----------|--------|------|-------|
-| **OpenAI** | GPT-4o-mini, GPT-4o, GPT-3.5-turbo | Cloud | Most popular, reliable |
-| **Anthropic** | Claude 3.5 Haiku, Claude 3.5 Sonnet | Cloud | Great for detailed analysis |
-| **Google Gemini** | Gemini 1.5 Flash, Gemini 2.5 Pro | Cloud | Fast and efficient |
+| **OpenAI** | GPT-5, GPT-5-mini, GPT-4.1, GPT-4o | Cloud | Latest GPT-5 with enhanced reasoning |
+| **Anthropic** | Claude 4 Opus, Claude 4 Sonnet, Claude 3.5 Haiku | Cloud | Claude 4 with extended thinking |
+| **Google Gemini** | Gemini 2.5 Flash, Gemini 2.5 Pro, Gemini 2.0 Flash | Cloud | Latest 2.5 series with thinking |
 | **Mistral** | Mistral Small Latest, Mistral Large | Cloud | European AI provider |
+| **DeepSeek** | deepseek-chat, deepseek-reasoner | Cloud | DeepSeek-V3.1 with thinking mode |
 | **Ollama** | Llama 3.2, CodeLlama, Qwen, etc. | Local | Privacy-focused, offline |
 | **LM Studio** | Any compatible model | Local | User-managed local server |
 | **OpenRouter** | 100+ models | Proxy | Access to multiple providers |
@@ -43,6 +45,7 @@ Universal AI-powered commit message generator supporting multiple providers and 
    - Search for "Universal Commit Assistant"
    - Select your preferred provider
    - Add API key when prompted (for cloud providers)
+   - For local providers (Ollama/LM Studio), ensure the server is running
 
 3. **Start using**:
    - Make changes to your code
@@ -64,6 +67,8 @@ Universal AI-powered commit message generator supporting multiple providers and 
 - **Message Styles**: Choose from conventional (with type prefix), concise (short, no prefix), detailed (multi-line), or custom formats
 - **Temperature Control**: Adjust AI creativity from deterministic (0) to very creative (2)
 - **Provider Switching**: Easily switch between different AI providers based on your needs
+- **API Key Management**: Use command palette to view API key status or clear all stored keys
+- **Context Control**: Choose to include only staged changes or both staged and unstaged changes
 
 ### Detailed Message Style
 
@@ -94,7 +99,7 @@ These changes improve the reliability and accuracy of date representation in exp
 Access settings via `File > Preferences > Settings`, then search for "Universal Commit Assistant":
 
 ### Core Settings
-- **Provider**: Choose your AI provider (`openai`, `anthropic`, `gemini`, `mistral`, `ollama`, `lmstudio`, `openrouter`)
+- **Provider**: Choose your AI provider (`openai`, `anthropic`, `gemini`, `mistral`, `deepseek`, `ollama`, `lmstudio`, `openrouter`)
 - **Include Unstaged**: Whether to include unstaged changes in analysis
 - **Message Style**: `conventional` (with type prefix: feat:, fix:), `concise` (short, no prefix), `detailed` (multi-line with explanations), or `custom`
 - **Language**: Select from 8 supported languages
@@ -102,13 +107,30 @@ Access settings via `File > Preferences > Settings`, then search for "Universal 
 - **Max Tokens**: Maximum length for generated messages (100-500, default: 200)
 
 ### Provider-Specific Settings
-Each provider has its own configuration options for models and endpoints. See the [Settings Guide](SETTINGS.md) for detailed configuration instructions.
+Each provider has its own configuration options for models and endpoints:
+
+**Cloud Providers:**
+- **OpenAI**: Latest models include gpt-5, gpt-5-mini, gpt-4.1 (specialized coding), gpt-4o-mini (default)
+- **Anthropic**: Latest models include claude-4-opus, claude-4-sonnet, claude-3-5-haiku-20241022 (default)
+- **Gemini**: Latest models include gemini-2.5-flash, gemini-2.5-pro, gemini-1.5-flash (default)
+- **Mistral**: Models include mistral-small-latest (default), mistral-large
+- **DeepSeek**: deepseek-chat (default, fast general purpose), deepseek-reasoner (thinking mode for complex tasks)
+- **OpenRouter**: Access to 100+ models via proxy service including latest releases
+
+**Local Providers:**
+- **Ollama**: Default model llama3.2, configurable base URL (default: http://localhost:11434)
+- **LM Studio**: Default model llama-3.1-8b-instruct, configurable base URL (default: http://localhost:1234)
+
+### Command Palette Commands
+- `Universal Commit Assistant: Open Settings` - Quick access to extension settings
+- `Universal Commit Assistant: Show API Key Status` - View which providers have API keys configured
+- `Universal Commit Assistant: Clear All API Keys` - Remove all stored API keys from VS Code secrets
 
 ## 🔧 Requirements
 
 - **VS Code**: 1.104.0 or higher
 - **Git**: Repository with changes to commit
-- **API Key**: Required for cloud providers (OpenAI, Anthropic, Gemini, Mistral, OpenRouter)
+- **API Key**: Required for cloud providers (OpenAI, Anthropic, Gemini, Mistral, DeepSeek, OpenRouter)
 - **Local Server**: Required for local providers (Ollama, LM Studio)
 
 ## 🛠️ Development
@@ -126,14 +148,16 @@ npm install
 npm run compile
 
 # Launch Extension Development Host
-# Press F5 in VS Code
+# Press F5 in VS Code to open Extension Development Host
+# Or use Ctrl+Shift+P and run "Debug: Start Debugging"
 ```
 
 ### Available Scripts
 ```bash
 npm run compile          # Compile TypeScript
 npm run watch            # Watch mode for development
-npm run package          # Build production bundle
+npm run package          # Build production bundle using webpack
+npm run vscode:prepublish # Pre-publish build step
 npm run semantic-release # Automated release (CI/CD)
 npm run release:dry-run  # Test release process
 ```

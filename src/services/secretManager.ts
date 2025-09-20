@@ -6,6 +6,7 @@ export class SecretManager {
         'universal-commit-assistant.anthropic.apiKey',
         'universal-commit-assistant.gemini.apiKey',
         'universal-commit-assistant.mistral.apiKey',
+        'universal-commit-assistant.deepseek.apiKey',
         'universal-commit-assistant.openrouter.apiKey'
     ];
 

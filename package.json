@@ -2,7 +2,7 @@
   "name": "universal-commit-assistant",
   "displayName": "Universal Commit Assistant",
   "version": "1.1.4",
-  "description": "Universal AI-powered commit message generator supporting multiple providers and languages (OpenAI, Anthropic, Gemini, Mistral, Ollama, LM Studio, OpenRouter)",
+  "description": "Universal AI-powered commit message generator supporting multiple providers and languages (OpenAI, Anthropic, Gemini, Mistral, DeepSeek, Ollama, LM Studio, OpenRouter)",
   "categories": [
     "Other",
     "Machine Learning",
@@ -16,6 +16,7 @@
     "anthropic",
     "gemini",
     "mistral",
+    "deepseek",
     "ollama",
     "automation",
     "assistant",
@@ -85,6 +86,7 @@
               "anthropic",
               "gemini",
               "mistral",
+              "deepseek",
               "openrouter",
               "ollama",
               "lmstudio"
@@ -94,6 +96,7 @@
               "Anthropic Claude models",
               "Google Gemini models",
               "Mistral AI models",
+              "DeepSeek models",
               "OpenRouter proxy service",
               "Local Ollama instance",
               "Local LM Studio instance"
@@ -214,6 +217,19 @@
             "type": "string",
             "default": "openai/gpt-4o-mini",
             "description": "OpenRouter model to use"
+          },
+          "universal-commit-assistant.deepseek.model": {
+            "type": "string",
+            "default": "deepseek-chat",
+            "enum": [
+              "deepseek-chat",
+              "deepseek-reasoner"
+            ],
+            "enumDescriptions": [
+              "DeepSeek-V3.1 (Non-thinking Mode) - Fast general purpose model",
+              "DeepSeek-V3.1 (Thinking Mode) - Reasoning model for complex tasks"
+            ],
+            "description": "DeepSeek model to use"
           }
         }
       },
