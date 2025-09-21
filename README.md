@@ -1,224 +1,146 @@
 # Universal Commit Assistant
 
-[![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/gianged.universal-commit-assistant?style=flat-square&label=VS%20Code%20Marketplace&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=gianged.universal-commit-assistant)
-[![Downloads](https://img.shields.io/visual-studio-marketplace/d/gianged.universal-commit-assistant?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=gianged.universal-commit-assistant)
-[![Rating](https://img.shields.io/visual-studio-marketplace/r/gianged.universal-commit-assistant?style=flat-square)](https://marketplace.visualstudio.com/items?itemName=gianged.universal-commit-assistant)
+[📦 VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=gianged.universal-commit-assistant) • [⭐ Rate & Review](https://marketplace.visualstudio.com/items?itemName=gianged.universal-commit-assistant&ssr=false#review-details) • [🐛 Report Issues](https://github.com/gianged/universal-commit-assistant/issues)
 
-Universal AI-powered commit message generator supporting multiple providers and languages directly in VS Code.
+**Stop writing commit messages manually.** Let AI generate perfect commit messages for you instantly, with support for 8 AI providers and 8 languages, directly in VS Code.
 
-## ✨ Features
+![Demo GIF placeholder - showing the extension in action]
 
-- **🤖 Multiple AI Providers**: Support for OpenAI, Anthropic, Gemini, Mistral, DeepSeek, Ollama, LM Studio, and OpenRouter
-- **🌍 Multi-Language Support**: Generate commit messages in 8 languages (English, Chinese, Spanish, French, Russian, Japanese, Korean, Vietnamese)
-- **⚡ Source Control Integration**: One-click button directly in VS Code's source control panel
-- **🎯 Flexible Context**: Choose to include staged changes only or both staged and unstaged changes
-- **📝 Multiple Message Styles**: Conventional commits, concise, detailed, or custom prompts
-- **🔒 Secure API Key Storage**: API keys are stored securely using VS Code's secret storage
-- **🏠 Offline Support**: Works with local models (Ollama, LM Studio) for privacy-conscious users
-- **⚙️ Highly Configurable**: Customize temperature, system prompts, token limits, and more
-- **🎛️ API Key Management**: Built-in commands to view API key status and clear stored keys
-- **📊 Usage Analytics**: Optional usage tracking (no sensitive data collected)
+## Why Universal Commit Assistant?
 
-## 🤖 Supported Providers
+🚀 **Save Time**: Generate commit messages in seconds instead of minutes
+🎯 **Always Consistent**: Follow conventional commit standards automatically
+🌍 **Your Language**: Support for 8 languages including English, Chinese, Spanish, French, Russian, Japanese, Korean, Vietnamese
+🔒 **Privacy First**: Use local AI models (Ollama, LM Studio) or secure cloud providers
 
-| Provider | Models | Type | Notes |
-|----------|--------|------|-------|
-| **OpenAI** | GPT-5, GPT-5-mini, GPT-4.1, GPT-4o | Cloud | Latest GPT-5 with enhanced reasoning |
-| **Anthropic** | Claude 4 Opus, Claude 4 Sonnet, Claude 3.5 Haiku | Cloud | Claude 4 with extended thinking |
-| **Google Gemini** | Gemini 2.5 Flash, Gemini 2.5 Pro, Gemini 2.0 Flash | Cloud | Latest 2.5 series with thinking |
-| **Mistral** | Mistral Small Latest, Mistral Large | Cloud | European AI provider |
-| **DeepSeek** | deepseek-chat, deepseek-reasoner | Cloud | DeepSeek-V3.1 with thinking mode |
-| **Ollama** | Llama 3.2, CodeLlama, Qwen, etc. | Local | Privacy-focused, offline |
-| **LM Studio** | Any compatible model | Local | User-managed local server |
-| **OpenRouter** | 100+ models | Proxy | Access to multiple providers |
+## Quick Start
 
-## 🚀 Installation
+1. **Install** → Search "Universal Commit Assistant" in VS Code Extensions
+2. **Configure** → Choose your AI provider and add API key (or setup local model)
+3. **Generate** → Click the ✨ button in Source Control panel
 
-1. **Install from VS Code Marketplace**:
-   - Open VS Code
-   - Go to Extensions (`Ctrl+Shift+X`)
-   - Search for "Universal Commit Assistant"
-   - Click Install
+That's it! Your commit messages will be professionally written and consistent.
 
-2. **Configure your AI provider**:
-   - Open Settings (`Ctrl+,`)
-   - Search for "Universal Commit Assistant"
-   - Select your preferred provider
-   - Add API key when prompted (for cloud providers)
-   - For local providers (Ollama/LM Studio), ensure the server is running
+## Smart Commit Generation
 
-3. **Start using**:
-   - Make changes to your code
-   - Click the ✨ button in the Source Control panel
-   - Let AI generate your commit message!
+- **Context-Aware**: Analyzes your actual code changes to understand what you did
+- **Multiple Styles**: Choose from conventional commits, concise format, or detailed explanations
+- **Flexible Context**: Works with staged changes, unstaged changes, or both
+- **Customizable**: Adjust AI creativity, message length, and add custom prompts
 
-## 📖 Usage
+## AI Provider Options
 
-### Basic Usage
-1. Make changes to your code
-2. Stage your changes (optional - extension works with unstaged changes too)
-3. Click the **"Generate Universal Commit Message"** button (✨) in the source control panel
-4. Review and edit the generated message if needed
-5. Commit your changes
+Choose the provider that fits your needs and budget:
 
-### Advanced Usage
-- **Custom Prompts**: Define your own prompt templates for specific project needs
-- **Multi-language**: Generate commit messages in your preferred language
-- **Message Styles**: Choose from conventional (with type prefix), concise (short, no prefix), detailed (multi-line), or custom formats
-- **Temperature Control**: Adjust AI creativity from deterministic (0) to very creative (2)
-- **Provider Switching**: Easily switch between different AI providers based on your needs
-- **API Key Management**: Use command palette to view API key status or clear all stored keys
-- **Context Control**: Choose to include only staged changes or both staged and unstaged changes
+### ☁️ Cloud Providers (API Key Required)
+| Provider | Best For | Latest Models |
+|----------|----------|---------------|
+| **OpenAI** | General purpose | GPT-5, GPT-4.1, GPT-4o |
+| **Anthropic** | Code understanding | Claude 4 Opus, Claude 4 Sonnet |
+| **Google Gemini** | Fast responses | Gemini 2.5 Flash, Gemini 2.5 Pro |
+| **Mistral** | European compliance | Mistral Small, Mistral Large |
+| **DeepSeek** | Cost-effective | DeepSeek-V3.1 Chat & Reasoner |
+| **OpenRouter** | Access to 100+ models | Meta Llama, Claude, GPT, and more |
 
-### Detailed Message Style
+### 🏠 Local Providers (Privacy First)
+| Provider | Best For | Setup |
+|----------|----------|-------|
+| **Ollama** | Complete privacy | Install Ollama + download models |
+| **LM Studio** | Easy local setup | Download LM Studio + any model |
 
-When using the **"detailed"** message style, the extension generates comprehensive multi-line commit messages with:
+## Configuration Made Simple
 
-- **Structured format** with title, description, and bullet points
-- **Detailed explanations** of what was changed and why
-- **Bold formatting** for section headers and key points
-- **Bullet point summaries** of specific improvements
+Access via `Settings` → `Extensions` → `Universal Commit Assistant`:
 
-**Example output:**
+### Essential Settings
+- **Provider**: Select your preferred AI service
+- **Message Style**:
+  - `conventional` → feat: add new feature
+  - `concise` → add new feature
+  - `detailed` → Multi-line with explanations
+  - `custom` → Your own template
+- **Language**: Choose from 8 supported languages
+- **Include Unstaged**: Analyze uncommitted changes too
+
+### AI Behavior
+- **Temperature**: Control creativity (0 = consistent, 2 = creative)
+- **Max Tokens**: Message length limit (100-500)
+- **Custom Prompt**: Override default instructions
+
+## Example Outputs
+
+**Conventional Style:**
 ```
-fix: Handle date parsing and display in Excel export
+feat: add user authentication with JWT tokens
 
-This commit addresses issues with date handling in the Excel export functionality.
-
-- **Improved Date Parsing:** Introduced a TryParseDate helper method to robustly parse various date string formats
-- **Correct Excel Date Formatting:** Modified export logic to explicitly handle DateTime values with "yyyy-mm-dd" format
-- **Updated Data Model:** Changed date-related properties from string to DateTime? for better type accuracy
-
-These changes improve the reliability and accuracy of date representation in exported reports.
+Implement secure login system with password hashing and session management
 ```
 
-**To enable:** Go to Settings → Extensions → Universal Commit Assistant → Set "Message Style" to "detailed"
+**Detailed Style:**
+```
+feat: implement user authentication system
 
-## ⚙️ Configuration
+This commit introduces a comprehensive authentication system for the application.
 
-Access settings via `File > Preferences > Settings`, then search for "Universal Commit Assistant":
+**Key Changes:**
+- Added JWT token-based authentication
+- Implemented password hashing with bcrypt
+- Created user session management
+- Added login/logout endpoints
 
-### Core Settings
-- **Provider**: Choose your AI provider (`openai`, `anthropic`, `gemini`, `mistral`, `deepseek`, `ollama`, `lmstudio`, `openrouter`)
-- **Include Unstaged**: Whether to include unstaged changes in analysis
-- **Message Style**: `conventional` (with type prefix: feat:, fix:), `concise` (short, no prefix), `detailed` (multi-line with explanations), or `custom`
-- **Language**: Select from 8 supported languages
-- **Temperature**: Control AI creativity (0-2, default: 0.3)
-- **Max Tokens**: Maximum length for generated messages (100-500, default: 200)
-
-### Provider-Specific Settings
-Each provider has its own configuration options for models and endpoints:
-
-**Cloud Providers:**
-- **OpenAI**: Latest models include gpt-5, gpt-5-mini, gpt-4.1 (specialized coding), gpt-4o-mini (default)
-- **Anthropic**: Latest models include claude-4-opus, claude-4-sonnet, claude-3-5-haiku-20241022 (default)
-- **Gemini**: Latest models include gemini-2.5-flash, gemini-2.5-pro, gemini-1.5-flash (default)
-- **Mistral**: Models include mistral-small-latest (default), mistral-large
-- **DeepSeek**: deepseek-chat (default, fast general purpose), deepseek-reasoner (thinking mode for complex tasks)
-- **OpenRouter**: Access to 100+ models via proxy service including latest releases
-
-**Local Providers:**
-- **Ollama**: Default model llama3.2, configurable base URL (default: http://localhost:11434)
-- **LM Studio**: Default model llama-3.1-8b-instruct, configurable base URL (default: http://localhost:1234)
-
-### Command Palette Commands
-- `Universal Commit Assistant: Open Settings` - Quick access to extension settings
-- `Universal Commit Assistant: Show API Key Status` - View which providers have API keys configured
-- `Universal Commit Assistant: Clear All API Keys` - Remove all stored API keys from VS Code secrets
-
-## 🔧 Requirements
-
-- **VS Code**: 1.104.0 or higher
-- **Git**: Repository with changes to commit
-- **API Key**: Required for cloud providers (OpenAI, Anthropic, Gemini, Mistral, DeepSeek, OpenRouter)
-- **Local Server**: Required for local providers (Ollama, LM Studio)
-
-## 🛠️ Development
-
-### Setup
-```bash
-# Clone the repository
-git clone https://github.com/gianged/universal-commit-assistant.git
-cd universal-commit-assistant
-
-# Install dependencies
-npm install
-
-# Compile TypeScript
-npm run compile
-
-# Launch Extension Development Host
-# Press F5 in VS Code to open Extension Development Host
-# Or use Ctrl+Shift+P and run "Debug: Start Debugging"
+**Benefits:**
+- Improves application security
+- Enables user-specific features
+- Follows industry best practices
 ```
 
-### Available Scripts
-```bash
-npm run compile          # Compile TypeScript
-npm run watch            # Watch mode for development
-npm run package          # Build production bundle using webpack
-npm run vscode:prepublish # Pre-publish build step
-npm run semantic-release # Automated release (CI/CD)
-npm run release:dry-run  # Test release process
-```
+## Commands
 
-### Project Structure
-```
-src/
-├── extension.ts              # Entry point
-├── types/index.ts           # TypeScript interfaces
-├── providers/               # AI provider implementations
-│   ├── baseProvider.ts      # Abstract base class
-│   ├── aiProviderFactory.ts # Factory pattern
-│   └── *Provider.ts         # Individual providers
-├── services/                # Business logic
-│   ├── gitCommitService.ts  # Main workflow
-│   ├── gitService.ts        # Git operations
-│   └── secretManager.ts     # API key management
-└── utils/
-    └── configurationManager.ts # Settings management
-```
+Access these via Command Palette (`Ctrl+Shift+P`):
 
-## 🤝 Contributing
+- **Generate Universal Commit Message** → Main functionality
+- **Show API Key Status** → Check which providers are configured
+- **Clear All API Keys** → Remove stored credentials
+- **Open Settings** → Quick access to configuration
 
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
+## Multi-Language Support
 
-### Commit Convention
-This project uses [Conventional Commits](https://www.conventionalcommits.org/) for automated versioning and changelog generation:
+Generate commit messages in your preferred language:
+- 🇺🇸 English (default)
+- 🇨🇳 Chinese (Simplified)
+- 🇪🇸 Spanish
+- 🇫🇷 French
+- 🇷🇺 Russian
+- 🇯🇵 Japanese
+- 🇰🇷 Korean
+- 🇻🇳 Vietnamese
 
-```bash
-feat: add support for new AI provider
-fix: resolve temperature validation issue
-docs: update installation instructions
-```
+## Requirements
 
-### Development Workflow
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feat/amazing-feature`)
-3. Make your changes following the commit convention
-4. Push to your branch (`git push origin feat/amazing-feature`)
-5. Open a Pull Request
+- **VS Code**: Version 1.104.0 or higher
+- **Git Repository**: With changes to commit
+- **AI Provider**: API key (cloud) or running server (local)
 
-## 📄 License
+## Privacy & Security
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- **Secure Storage**: API keys stored in VS Code's encrypted secret storage
+- **No Data Retention**: Your code never leaves your machine with local providers
+- **Optional Analytics**: Usage tracking can be disabled (no sensitive data collected)
+- **Open Source**: Full transparency with MIT license
 
-## 🙏 Acknowledgments
+## Need Help?
 
-- Thanks to all AI providers for their excellent APIs
-- VS Code team for the robust extension platform
-- Contributors and users who make this project better
+- 📖 **Documentation**: See configuration examples above
+- 🐛 **Issues**: [Report bugs on GitHub](https://github.com/gianged/universal-commit-assistant/issues)
+- 💡 **Feature Requests**: [Suggest improvements](https://github.com/gianged/universal-commit-assistant/issues)
+- ⭐ **Rate & Review**: Help others discover this extension
 
-## 📊 Release Process
+## License
 
-This project uses [semantic-release](https://github.com/semantic-release/semantic-release) for automated versioning and publishing:
-
-- **Commits** trigger automated analysis
-- **Versions** are bumped automatically based on commit types
-- **Changelog** is generated automatically
-- **Publishing** to VS Code Marketplace is automated
-- **GitHub Releases** are created automatically
+MIT License - see [LICENSE](LICENSE) file for details.
 
 ---
 
-**Made with ❤️ for the developer community**
+**Made with ❤️ for developers who value their time**
+
+*Save hours every week on commit messages. Install now and never write another commit message manually.*
