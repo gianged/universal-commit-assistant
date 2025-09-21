@@ -1,3 +1,15 @@
+# [1.3.0](https://github.com/gianged/universal-commit-assistant/compare/v1.2.1...v1.3.0) (2025-09-21)
+
+
+### Bug Fixes
+
+* improve marketplace documentation ([816cfab](https://github.com/gianged/universal-commit-assistant/commit/816cfab6c83be56e0aabac42317766fd16e05774))
+
+
+### Features
+
+* improve Gemini security and implement smart git workflow ([31fc4d9](https://github.com/gianged/universal-commit-assistant/commit/31fc4d9e7b497109353457ecb2b76e72cf2c1c99))
+
 ## [1.2.1](https://github.com/gianged/universal-commit-assistant/compare/v1.2.0...v1.2.1) (2025-09-21)
 
 
