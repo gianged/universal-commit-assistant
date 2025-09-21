@@ -4,8 +4,6 @@
 
 **Stop writing commit messages manually.** Let AI generate perfect commit messages for you instantly, with support for 8 AI providers and 8 languages, directly in VS Code.
 
-![Demo GIF placeholder - showing the extension in action]
-
 ## Why Universal Commit Assistant?
 
 🚀 **Save Time**: Generate commit messages in seconds instead of minutes
