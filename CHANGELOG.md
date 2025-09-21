@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/gianged/universal-commit-assistant/compare/v1.2.0...v1.2.1) (2025-09-21)
+
+
+### Bug Fixes
+
+* improve marketplace documentation ([1dbd5b2](https://github.com/gianged/universal-commit-assistant/commit/1dbd5b2d575528c88f5a0b67569d48ce73a04692))
+
 # [1.2.0](https://github.com/gianged/universal-commit-assistant/compare/v1.1.4...v1.2.0) (2025-09-20)
 
 
