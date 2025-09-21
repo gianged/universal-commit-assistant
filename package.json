@@ -148,23 +148,17 @@
             "description": "Language for generated commit messages",
             "order": 3
           },
-          "universal-commit-assistant.includeUnstaged": {
-            "type": "boolean",
-            "default": true,
-            "description": "Include unstaged changes when generating commit messages",
-            "order": 4
-          },
           "universal-commit-assistant.customPrompt": {
             "type": "string",
             "default": "",
             "description": "Custom prompt template for commit message generation (used when messageStyle is 'custom')",
-            "order": 5
+            "order": 4
           },
           "universal-commit-assistant.systemPrompt": {
             "type": "string",
             "default": "You are a git commit message generator. Return ONLY the commit message with no additional text, explanations, or prefixes.",
             "description": "Custom system prompt for AI providers",
-            "order": 6
+            "order": 5
           },
           "universal-commit-assistant.temperature": {
             "type": "number",
@@ -172,7 +166,7 @@
             "minimum": 0,
             "maximum": 2,
             "description": "Temperature for AI responses (0 = deterministic, 2 = very creative)",
-            "order": 7
+            "order": 6
           },
           "universal-commit-assistant.maxTokens": {
             "type": "number",
@@ -180,13 +174,13 @@
             "minimum": 100,
             "maximum": 500,
             "description": "Maximum tokens for generated commit messages",
-            "order": 8
+            "order": 7
           },
           "universal-commit-assistant.enableAnalytics": {
             "type": "boolean",
             "default": false,
             "description": "Enable usage analytics (no sensitive data is collected)",
-            "order": 9
+            "order": 8
           }
         }
       },
@@ -196,6 +190,18 @@
           "universal-commit-assistant.openai.model": {
             "type": "string",
             "default": "gpt-4o-mini",
+            "enum": [
+              "gpt-4o-mini",
+              "gpt-4o",
+              "o1-mini",
+              "o1-preview"
+            ],
+            "enumDescriptions": [
+              "GPT-4o Mini - Fast and cost-effective (recommended)",
+              "GPT-4o - Full capability model",
+              "o1 Mini - Reasoning model for complex logic",
+              "o1 Preview - Advanced reasoning model"
+            ],
             "description": "OpenAI model to use"
           },
           "universal-commit-assistant.anthropic.model": {
@@ -205,7 +211,17 @@
           },
           "universal-commit-assistant.gemini.model": {
             "type": "string",
-            "default": "gemini-1.5-flash",
+            "default": "gemini-2.5-flash",
+            "enum": [
+              "gemini-2.5-flash",
+              "gemini-2.5-pro",
+              "gemini-2.0-flash"
+            ],
+            "enumDescriptions": [
+              "Gemini 2.5 Flash - Latest stable model (recommended)",
+              "Gemini 2.5 Pro - Advanced reasoning with thinking mode",
+              "Gemini 2.0 Flash - Newest with 1M context window"
+            ],
             "description": "Gemini model to use"
           },
           "universal-commit-assistant.mistral.model": {

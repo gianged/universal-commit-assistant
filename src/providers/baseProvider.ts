@@ -58,9 +58,10 @@ This change improves security and provides users with convenient social login op
       return "Respond in English. Use imperative mood like 'add', 'fix', 'update'.";
     }
 
-    const styleNote = (style === "conventional" || style === "detailed") 
-      ? " Keep type prefixes (feat, fix, docs, etc.) in English for tooling compatibility, but translate the description."
-      : "";
+    const styleNote =
+      style === "conventional" || style === "detailed"
+        ? " Keep type prefixes (feat, fix, docs, etc.) in English for tooling compatibility, but translate the description."
+        : "";
 
     switch (language) {
       case "spanish":

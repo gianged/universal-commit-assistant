@@ -22,7 +22,7 @@ export class OpenRouterProvider extends BaseProvider {
     const systemPrompt = this.configManager.getSystemPrompt();
     const style = options?.style || this.configManager.getMessageStyle();
     const language = this.configManager.getLanguage();
-    const maxTokens = options?.maxTokens || (style === 'detailed' ? 300 : this.configManager.getMaxTokens());
+    const maxTokens = options?.maxTokens || (style === "detailed" ? 300 : this.configManager.getMaxTokens());
 
     const prompt = this.buildPrompt(changes, style, options?.customPrompt, language);
 
@@ -57,7 +57,9 @@ export class OpenRouterProvider extends BaseProvider {
 
       // Check if this is the generation tracking response instead of chat completion
       if (response.data.generation_id || response.data.app_id) {
-        throw new Error("Received generation tracking response instead of chat completion. This may indicate an API issue.");
+        throw new Error(
+          "Received generation tracking response instead of chat completion. This may indicate an API issue."
+        );
       }
 
       if (!response.data?.choices?.length) {
@@ -65,7 +67,7 @@ export class OpenRouterProvider extends BaseProvider {
       }
 
       const choice = response.data.choices[0];
-      
+
       if (choice.finish_reason === "length") {
         throw new Error("OpenRouter response was truncated due to token limit. Try increasing max_tokens in settings.");
       }
@@ -78,9 +80,7 @@ export class OpenRouterProvider extends BaseProvider {
       return this.validateResponse(message, style);
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        const errorMessage = error.response?.data?.error?.message || 
-                           error.response?.data?.message || 
-                           error.message;
+        const errorMessage = error.response?.data?.error?.message || error.response?.data?.message || error.message;
         throw new Error(`OpenRouter API error: ${errorMessage}`);
       }
       throw error;
