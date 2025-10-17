@@ -176,11 +176,25 @@
             "description": "Maximum tokens for generated commit messages",
             "order": 7
           },
+          "universal-commit-assistant.maxDiffLength": {
+            "type": "number",
+            "default": 3000,
+            "minimum": 1000,
+            "maximum": 10000,
+            "description": "Maximum characters of git diff to send to AI (uses smart truncation for larger diffs)",
+            "order": 8
+          },
+          "universal-commit-assistant.detectFirstCommit": {
+            "type": "boolean",
+            "default": true,
+            "description": "Automatically detect and generate appropriate initial commit messages for first commits",
+            "order": 9
+          },
           "universal-commit-assistant.enableAnalytics": {
             "type": "boolean",
             "default": false,
             "description": "Enable usage analytics (no sensitive data is collected)",
-            "order": 8
+            "order": 10
           }
         }
       },
@@ -189,24 +203,30 @@
         "properties": {
           "universal-commit-assistant.openai.model": {
             "type": "string",
-            "default": "gpt-4o-mini",
+            "default": "gpt-5-mini",
             "enum": [
-              "gpt-4o-mini",
-              "gpt-4o",
-              "o1-mini",
-              "o1-preview"
+              "gpt-5-mini",
+              "gpt-5"
             ],
             "enumDescriptions": [
-              "GPT-4o Mini - Fast and cost-effective (recommended)",
-              "GPT-4o - Full capability model",
-              "o1 Mini - Reasoning model for complex logic",
-              "o1 Preview - Advanced reasoning model"
+              "GPT-5 Mini - Fast and cost-effective (recommended)",
+              "GPT-5 - Full capability flagship model"
             ],
             "description": "OpenAI model to use"
           },
           "universal-commit-assistant.anthropic.model": {
             "type": "string",
-            "default": "claude-3-5-haiku-20241022",
+            "default": "claude-haiku-4-5-20251001",
+            "enum": [
+              "claude-haiku-4-5-20251001",
+              "claude-sonnet-4-5-20250929",
+              "claude-opus-4-1-20250805"
+            ],
+            "enumDescriptions": [
+              "Claude Haiku 4.5 - Fast and cost-effective (recommended)",
+              "Claude Sonnet 4.5 - Enhanced reasoning and coding capabilities",
+              "Claude Opus 4.1 - Most capable model with extended thinking"
+            ],
             "description": "Anthropic model to use"
           },
           "universal-commit-assistant.gemini.model": {
@@ -231,7 +251,7 @@
           },
           "universal-commit-assistant.openrouter.model": {
             "type": "string",
-            "default": "openai/gpt-4o-mini",
+            "default": "openai/gpt-5-mini",
             "description": "OpenRouter model to use"
           },
           "universal-commit-assistant.deepseek.model": {
@@ -295,19 +315,19 @@
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/exec": "^7.1.0",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^11.0.6",
-    "@semantic-release/npm": "^12.0.2",
-    "@types/node": "24.4.0",
-    "@types/vscode": "^1.104.0",
-    "@vscode/vsce": "^3.6.0",
-    "semantic-release": "^24.2.8",
+    "@semantic-release/github": "^12.0.0",
+    "@semantic-release/npm": "^13.0.0",
+    "@types/node": "24.8.1",
+    "@types/vscode": "^1.95.0",
+    "@vscode/vsce": "^3.6.2",
+    "semantic-release": "^25.0.0",
     "ts-loader": "^9.5.4",
-    "typescript": "^5.9.2",
-    "webpack": "^5.101.3",
+    "typescript": "^5.9.3",
+    "webpack": "^5.102.1",
     "webpack-cli": "^6.0.1"
   },
   "engines": {
-    "vscode": "^1.104.0"
+    "vscode": "^1.95.0"
   },
   "icon": "logo.png"
 }

@@ -46,6 +46,10 @@ export class GitCommitService {
           try {
             progress.report({ increment: 20, message: "Getting git changes..." });
 
+            // Check if this is the first commit (if feature is enabled)
+            const detectFirstCommit = this.configManager.getDetectFirstCommit();
+            const isFirstCommit = detectFirstCommit && (await this.gitService.isFirstCommit());
+
             // Smart fallback: try staged first, then unstaged if no staged files
             let changes = await this.gitService.getChanges(false); // Get only staged changes first
 
@@ -76,6 +80,7 @@ export class GitCommitService {
               customPrompt: this.configManager.getCustomPrompt(),
               temperature: this.configManager.getTemperature(),
               systemPrompt: this.configManager.getSystemPrompt(),
+              isFirstCommit,
             });
 
             progress.report({ increment: 80, message: "Setting commit message..." });
@@ -101,6 +106,22 @@ export class GitCommitService {
   private formatChanges(changes: any): string {
     let formatted = "";
 
+    if (changes.statistics) {
+      formatted += "Change Summary:\n";
+      formatted += `  Files changed: ${changes.statistics.filesChanged}\n`;
+      formatted += `  Insertions: +${changes.statistics.additions}\n`;
+      formatted += `  Deletions: -${changes.statistics.deletions}\n`;
+
+      if (changes.statistics.fileTypes && changes.statistics.fileTypes.size > 0) {
+        formatted += "  File types: ";
+        const fileTypesArray = Array.from(changes.statistics.fileTypes.entries()) as Array<[string, number]>;
+        formatted += fileTypesArray.map(([type, count]) => `${type} (${count})`).join(", ");
+        formatted += "\n";
+      }
+
+      formatted += "\n";
+    }
+
     if (changes.staged.length > 0) {
       formatted += "Staged changes:\n";
       formatted += changes.staged.map((change: string) => `  ${change}`).join("\n");
@@ -115,9 +136,12 @@ export class GitCommitService {
 
     if (changes.diff && changes.diff !== "No changes detected") {
       formatted += "Diff:\n";
-      formatted += changes.diff.substring(0, 2000);
-      if (changes.diff.length > 2000) {
-        formatted += "\n... (truncated)";
+      const maxDiffLength = this.configManager.getMaxDiffLength?.() || 3000;
+      if (changes.diff.length > maxDiffLength) {
+        formatted += this.gitService.smartTruncateDiff(changes.diff, maxDiffLength);
+        formatted += "\n... (truncated for brevity)";
+      } else {
+        formatted += changes.diff;
       }
     }
 

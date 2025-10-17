@@ -109,22 +109,20 @@ Complete configuration guide for customizing Universal Commit Assistant to your 
 
 ### OpenAI
 ```json
-"universal-commit-assistant.openai.model": "gpt-4o-mini"
+"universal-commit-assistant.openai.model": "gpt-5-mini"
 ```
-**Popular Models**:
-- `gpt-4o-mini`: Fastest, most cost-effective
-- `gpt-4o`: Latest GPT-4 model
-- `gpt-4-turbo`: Fast GPT-4 variant
-- `gpt-3.5-turbo`: Legacy but reliable
+**Available Models**:
+- `gpt-5-mini`: Fast and cost-effective (recommended)
+- `gpt-5`: Flagship model with state-of-the-art capabilities
 
 ### Anthropic
 ```json
-"universal-commit-assistant.anthropic.model": "claude-3-5-haiku-20241022"
+"universal-commit-assistant.anthropic.model": "claude-haiku-4-5-20251001"
 ```
 **Popular Models**:
-- `claude-3-5-haiku-20241022`: Fast and efficient
-- `claude-3-5-sonnet-20241022`: Balanced performance
-- `claude-3-opus-20240229`: Most capable (premium)
+- `claude-haiku-4-5-20251001`: Fast and cost-effective (recommended)
+- `claude-sonnet-4-5-20250929`: Enhanced reasoning and coding capabilities
+- `claude-opus-4-1-20250805`: Most capable with extended thinking
 
 ### Google Gemini
 ```json
@@ -172,11 +170,11 @@ Complete configuration guide for customizing Universal Commit Assistant to your 
 
 ### OpenRouter
 ```json
-"universal-commit-assistant.openrouter.model": "openai/gpt-4o-mini"
+"universal-commit-assistant.openrouter.model": "openai/gpt-5-mini"
 ```
 **Popular Models**:
-- `openai/gpt-4o-mini`: OpenAI via OpenRouter
-- `anthropic/claude-3-5-haiku`: Anthropic via OpenRouter
+- `openai/gpt-5-mini`: OpenAI via OpenRouter
+- `anthropic/claude-haiku-4-5`: Anthropic via OpenRouter
 - `google/gemini-2.0-flash-exp`: Google via OpenRouter
 - `qwen/qwen-2.5-coder-32b-instruct`: Specialized coding model
 
@@ -205,11 +203,11 @@ Access via Command Palette (`Ctrl+Shift+P`):
   "universal-commit-assistant.temperature": 0.2,
   "universal-commit-assistant.language": "english",
   "universal-commit-assistant.systemPrompt": "Generate conventional commit messages. Use types: feat, fix, docs, style, refactor, test, chore. Keep descriptions under 50 characters.",
-  "universal-commit-assistant.anthropic.model": "claude-3-5-haiku-20241022"
+  "universal-commit-assistant.anthropic.model": "claude-haiku-4-5-20251001"
 }
 ```
 
-### Detailed Commits with GPT-4
+### Detailed Commits with GPT-5
 ```json
 {
   "universal-commit-assistant.provider": "openai",
@@ -217,7 +215,7 @@ Access via Command Palette (`Ctrl+Shift+P`):
   "universal-commit-assistant.temperature": 0.4,
   "universal-commit-assistant.maxTokens": 200,
   "universal-commit-assistant.language": "english",
-  "universal-commit-assistant.openai.model": "gpt-4o"
+  "universal-commit-assistant.openai.model": "gpt-5"
 }
 ```
 
@@ -289,12 +287,12 @@ Access via Command Palette (`Ctrl+Shift+P`):
 
 #### Faster Responses
 - Use local providers (Ollama/LM Studio)
-- Choose faster models (gpt-4o-mini, claude-3-5-haiku)
+- Choose faster models (gpt-5-mini, claude-haiku-4-5)
 - Reduce maxTokens for shorter messages
 - Set lower temperature for more deterministic output
 
 #### Better Quality
-- Use premium models (gpt-4o, claude-3-5-sonnet)
+- Use premium models (gpt-5, claude-sonnet-4-5, claude-opus-4-1)
 - Include unstaged changes for more context
 - Customize system prompt for your coding style
 - Use detailed message style for complex changes

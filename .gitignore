@@ -25,7 +25,3 @@ node_modules
 # OS files
 Thumbs.db
 *.log
-
-# Claude and MCPs
-CLAUDE.md
-.serena

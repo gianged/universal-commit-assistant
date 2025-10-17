@@ -24,7 +24,7 @@ export class OpenAIProvider extends BaseProvider {
     const language = this.configManager.getLanguage();
     const maxTokens = options?.maxTokens || (style === "detailed" ? 300 : this.configManager.getMaxTokens());
 
-    const prompt = this.buildPrompt(changes, style, options?.customPrompt, language);
+    const prompt = this.buildPrompt(changes, style, options?.customPrompt, language, options?.isFirstCommit);
 
     try {
       const response = await axios.post(

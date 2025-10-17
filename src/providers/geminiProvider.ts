@@ -22,7 +22,7 @@ export class GeminiProvider extends BaseProvider {
     const style = options?.style || this.configManager.getMessageStyle();
     const language = this.configManager.getLanguage();
 
-    const userPrompt = this.buildPrompt(changes, style, options?.customPrompt, language);
+    const userPrompt = this.buildPrompt(changes, style, options?.customPrompt, language, options?.isFirstCommit);
     const fullPrompt = `${systemPrompt}\n\nUser request: ${userPrompt}\n\nPlease respond with ONLY the commit message, no explanations or additional text.`;
 
     try {

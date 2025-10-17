@@ -23,6 +23,9 @@ That's it! Your commit messages will be professionally written and consistent.
 
 - **Context-Aware**: Analyzes your actual code changes to understand what you did
 - **Multiple Styles**: Choose from conventional commits, concise format, or detailed explanations
+- **Deep Analysis**: Provides statistical insights (files changed, insertions, deletions, file types)
+- **First Commit Detection**: Automatically generates appropriate initial commit messages
+- **Smart Truncation**: Intelligently handles large diffs while preserving important context
 - **Flexible Context**: Works with staged changes, unstaged changes, or both
 - **Customizable**: Adjust AI creativity, message length, and add custom prompts
 
@@ -31,26 +34,29 @@ That's it! Your commit messages will be professionally written and consistent.
 Choose the provider that fits your needs and budget:
 
 ### ☁️ Cloud Providers (API Key Required)
-| Provider | Best For | Latest Models |
-|----------|----------|---------------|
-| **OpenAI** | General purpose | GPT-5, GPT-4.1, GPT-4o |
-| **Anthropic** | Code understanding | Claude 4 Opus, Claude 4 Sonnet |
-| **Google Gemini** | Fast responses | Gemini 2.5 Flash, Gemini 2.5 Pro |
-| **Mistral** | European compliance | Mistral Small, Mistral Large |
-| **DeepSeek** | Cost-effective | DeepSeek-V3.1 Chat & Reasoner |
-| **OpenRouter** | Access to 100+ models | Meta Llama, Claude, GPT, and more |
+
+| Provider          | Best For              | Latest Models                          |
+| ----------------- | --------------------- | -------------------------------------- |
+| **OpenAI**        | General purpose       | GPT-5, GPT-5 Mini                      |
+| **Anthropic**     | Code understanding    | Claude Haiku 4.5, Sonnet 4.5, Opus 4.1 |
+| **Google Gemini** | Fast responses        | Gemini 2.5 Flash, Gemini 2.5 Pro       |
+| **Mistral**       | European compliance   | Mistral Small, Mistral Large           |
+| **DeepSeek**      | Cost-effective        | DeepSeek-V3.1 Chat & Reasoner          |
+| **OpenRouter**    | Access to 100+ models | Meta Llama, Claude, GPT, and more      |
 
 ### 🏠 Local Providers (Privacy First)
-| Provider | Best For | Setup |
-|----------|----------|-------|
-| **Ollama** | Complete privacy | Install Ollama + download models |
-| **LM Studio** | Easy local setup | Download LM Studio + any model |
+
+| Provider      | Best For         | Setup                            |
+| ------------- | ---------------- | -------------------------------- |
+| **Ollama**    | Complete privacy | Install Ollama + download models |
+| **LM Studio** | Easy local setup | Download LM Studio + any model   |
 
 ## Configuration Made Simple
 
 Access via `Settings` → `Extensions` → `Universal Commit Assistant`:
 
 ### Essential Settings
+
 - **Provider**: Select your preferred AI service
 - **Message Style**:
   - `conventional` → feat: add new feature
@@ -61,13 +67,17 @@ Access via `Settings` → `Extensions` → `Universal Commit Assistant`:
 - **Include Unstaged**: Analyze uncommitted changes too
 
 ### AI Behavior
+
 - **Temperature**: Control creativity (0 = consistent, 2 = creative)
 - **Max Tokens**: Message length limit (100-500)
+- **Max Diff Length**: Maximum characters of git diff to send to AI (1000-10000, default: 3000)
+- **Detect First Commit**: Automatically detect and generate appropriate initial commit messages (default: enabled)
 - **Custom Prompt**: Override default instructions
 
 ## Example Outputs
 
 **Conventional Style:**
+
 ```
 feat: add user authentication with JWT tokens
 
@@ -75,6 +85,7 @@ Implement secure login system with password hashing and session management
 ```
 
 **Detailed Style:**
+
 ```
 feat: implement user authentication system
 
@@ -104,6 +115,7 @@ Access these via Command Palette (`Ctrl+Shift+P`):
 ## Multi-Language Support
 
 Generate commit messages in your preferred language:
+
 - 🇺🇸 English (default)
 - 🇨🇳 Chinese (Simplified)
 - 🇪🇸 Spanish
@@ -113,9 +125,46 @@ Generate commit messages in your preferred language:
 - 🇰🇷 Korean
 - 🇻🇳 Vietnamese
 
+## Token Cost Analysis
+
+Universal Commit Assistant is designed to be cost-effective while providing high-quality commit messages.
+
+### Typical Token Usage
+
+**Standard Analysis (current baseline):**
+- ~1,000-2,300 tokens per commit
+- Includes: file list, basic diff (2000 chars), prompts
+
+**Enhanced Analysis (with deep features):**
+- ~1,800-3,200 tokens per commit
+- Includes: file list, statistics, enhanced diff (3000 chars), file categorization
+
+### Cost per Commit by Provider
+
+Based on enhanced analysis (~2,500 input tokens + 150 output tokens average):
+
+| Provider | Model | Cost per Commit | Cost per 100 Commits |
+|----------|-------|-----------------|---------------------|
+| **OpenAI** | GPT-5 Mini | ~$0.0005 | ~$0.05 |
+| **OpenAI** | GPT-5 | ~$0.008 | ~$0.80 |
+| **Anthropic** | Claude Haiku 4.5 | ~$0.003 | ~$0.30 |
+| **Anthropic** | Claude Sonnet 4.5 | ~$0.010 | ~$1.00 |
+| **DeepSeek** | deepseek-chat | ~$0.0009 | ~$0.09 |
+| **Gemini** | 2.5 Flash | ~$0.0003 | ~$0.03 |
+| **Ollama/LM Studio** | Local Models | **FREE** | **FREE** |
+
+### Cost Optimization Tips
+
+1. **Use Cost-Effective Providers**: Gemini Flash, DeepSeek, and GPT-5 Mini offer excellent quality at low cost
+2. **Adjust Max Diff Length**: Reduce `maxDiffLength` to 2000 for simpler commits
+3. **Local Models**: Use Ollama or LM Studio for completely free operation
+4. **Smart Defaults**: The extension uses intelligent truncation to minimize tokens while preserving context
+
+**Bottom Line**: Even with premium models, most users spend less than $1/month on commit message generation.
+
 ## Requirements
 
-- **VS Code**: Version 1.104.0 or higher
+- **VS Code**: Version 1.95.0 or higher
 - **Git Repository**: With changes to commit
 - **AI Provider**: API key (cloud) or running server (local)
 
@@ -141,4 +190,4 @@ MIT License - see [LICENSE](LICENSE) file for details.
 
 **Made with ❤️ for developers who value their time**
 
-*Save hours every week on commit messages. Install now and never write another commit message manually.*
+_Save hours every week on commit messages. Install now and never write another commit message manually._

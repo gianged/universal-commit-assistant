@@ -44,12 +44,20 @@ export class ConfigurationManager {
     return this.getConfiguration().get("enableAnalytics", false);
   }
 
+  getMaxDiffLength(): number {
+    return this.getConfiguration().get("maxDiffLength", 3000);
+  }
+
+  getDetectFirstCommit(): boolean {
+    return this.getConfiguration().get("detectFirstCommit", true);
+  }
+
   getOpenAIModel(): string {
-    return this.getConfiguration().get("openai.model", "gpt-4o-mini");
+    return this.getConfiguration().get("openai.model", "gpt-5-mini");
   }
 
   getAnthropicModel(): string {
-    return this.getConfiguration().get("anthropic.model", "claude-3-5-haiku-20241022");
+    return this.getConfiguration().get("anthropic.model", "claude-haiku-4-5-20251001");
   }
 
   getGeminiModel(): string {
@@ -77,7 +85,7 @@ export class ConfigurationManager {
   }
 
   getOpenRouterModel(): string {
-    return this.getConfiguration().get("openrouter.model", "openai/gpt-4o-mini");
+    return this.getConfiguration().get("openrouter.model", "openai/gpt-5-mini");
   }
 
   getDeepSeekModel(): string {
