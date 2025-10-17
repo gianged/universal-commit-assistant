@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/gianged/universal-commit-assistant/compare/v1.3.0...v1.4.0) (2025-10-17)
+
+
+### Features
+
+* Enhance commit message generation and configuration options ([35cecb5](https://github.com/gianged/universal-commit-assistant/commit/35cecb5a5cfc02926593610301da542be5e63d0c))
+
 # [1.3.0](https://github.com/gianged/universal-commit-assistant/compare/v1.2.1...v1.3.0) (2025-09-21)
 
 
