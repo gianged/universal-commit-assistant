@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/gianged/universal-commit-assistant/compare/v1.4.0...v1.5.0) (2025-11-24)
+
+
+### Features
+
+* Add Qwen AI provider integration and update model support ([084ce8d](https://github.com/gianged/universal-commit-assistant/commit/084ce8d2e7a4ecb985a43c90ca88a645c3d6ee4a))
+
 # [1.4.0](https://github.com/gianged/universal-commit-assistant/compare/v1.3.0...v1.4.0) (2025-10-17)
 
 
