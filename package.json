@@ -2,7 +2,7 @@
   "name": "universal-commit-assistant",
   "displayName": "Universal Commit Assistant",
   "version": "1.4.0",
-  "description": "Universal AI-powered commit message generator supporting multiple providers and languages (OpenAI, Anthropic, Gemini, Mistral, DeepSeek, Ollama, LM Studio, OpenRouter)",
+  "description": "Universal AI-powered commit message generator supporting multiple providers and languages (OpenAI, Anthropic, Gemini, Mistral, DeepSeek, Qwen, Ollama, LM Studio, OpenRouter)",
   "categories": [
     "Other",
     "Machine Learning",
@@ -17,6 +17,7 @@
     "gemini",
     "mistral",
     "deepseek",
+    "qwen",
     "ollama",
     "automation",
     "assistant",
@@ -87,6 +88,7 @@
               "gemini",
               "mistral",
               "deepseek",
+              "qwen",
               "openrouter",
               "ollama",
               "lmstudio"
@@ -97,6 +99,7 @@
               "Google Gemini models",
               "Mistral AI models",
               "DeepSeek models",
+              "Alibaba Qwen models",
               "OpenRouter proxy service",
               "Local Ollama instance",
               "Local LM Studio instance"
@@ -203,13 +206,19 @@
         "properties": {
           "universal-commit-assistant.openai.model": {
             "type": "string",
-            "default": "gpt-5-mini",
+            "default": "gpt-5.1",
             "enum": [
+              "gpt-5.1",
+              "gpt-5.1-codex",
+              "gpt-5.1-codex-mini",
               "gpt-5-mini",
               "gpt-5"
             ],
             "enumDescriptions": [
-              "GPT-5 Mini - Fast and cost-effective (recommended)",
+              "GPT-5.1 - Latest model balancing intelligence and speed (recommended)",
+              "GPT-5.1 Codex - Optimized for coding tasks",
+              "GPT-5.1 Codex Mini - Fast coding model",
+              "GPT-5 Mini - Fast and cost-effective",
               "GPT-5 - Full capability flagship model"
             ],
             "description": "OpenAI model to use"
@@ -231,16 +240,18 @@
           },
           "universal-commit-assistant.gemini.model": {
             "type": "string",
-            "default": "gemini-2.5-flash",
+            "default": "gemini-3-pro",
             "enum": [
+              "gemini-3-pro",
+              "gemini-3-pro-preview-11-2025",
               "gemini-2.5-flash",
-              "gemini-2.5-pro",
-              "gemini-2.0-flash"
+              "gemini-2.5-pro"
             ],
             "enumDescriptions": [
-              "Gemini 2.5 Flash - Latest stable model (recommended)",
-              "Gemini 2.5 Pro - Advanced reasoning with thinking mode",
-              "Gemini 2.0 Flash - Newest with 1M context window"
+              "Gemini 3 Pro - Latest flagship model with 1M context (recommended)",
+              "Gemini 3 Pro Preview - Preview version of Gemini 3",
+              "Gemini 2.5 Flash - Fast and cost-effective",
+              "Gemini 2.5 Pro - Advanced reasoning with thinking mode"
             ],
             "description": "Gemini model to use"
           },
@@ -266,6 +277,34 @@
               "DeepSeek-V3.1 (Thinking Mode) - Reasoning model for complex tasks"
             ],
             "description": "DeepSeek model to use"
+          },
+          "universal-commit-assistant.qwen.model": {
+            "type": "string",
+            "default": "qwen-plus",
+            "enum": [
+              "qwen-plus",
+              "qwen-max",
+              "qwen-turbo"
+            ],
+            "enumDescriptions": [
+              "Qwen Plus - Balanced performance and cost (recommended)",
+              "Qwen Max - Most capable model",
+              "Qwen Turbo - Fastest model with 1M context"
+            ],
+            "description": "Qwen model to use"
+          },
+          "universal-commit-assistant.qwen.baseUrl": {
+            "type": "string",
+            "default": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+            "enum": [
+              "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
+              "https://dashscope.aliyuncs.com/compatible-mode/v1"
+            ],
+            "enumDescriptions": [
+              "International (Singapore) - For users outside China",
+              "China (Beijing) - For users in mainland China"
+            ],
+            "description": "Qwen DashScope API region"
           }
         }
       },

@@ -53,7 +53,7 @@ export class ConfigurationManager {
   }
 
   getOpenAIModel(): string {
-    return this.getConfiguration().get("openai.model", "gpt-5-mini");
+    return this.getConfiguration().get("openai.model", "gpt-5.1");
   }
 
   getAnthropicModel(): string {
@@ -61,7 +61,7 @@ export class ConfigurationManager {
   }
 
   getGeminiModel(): string {
-    return this.getConfiguration().get("gemini.model", "gemini-2.5-flash");
+    return this.getConfiguration().get("gemini.model", "gemini-3-pro");
   }
 
   getMistralModel(): string {
@@ -85,11 +85,19 @@ export class ConfigurationManager {
   }
 
   getOpenRouterModel(): string {
-    return this.getConfiguration().get("openrouter.model", "openai/gpt-5-mini");
+    return this.getConfiguration().get("openrouter.model", "openai/gpt-5.1");
   }
 
   getDeepSeekModel(): string {
     return this.getConfiguration().get("deepseek.model", "deepseek-chat");
+  }
+
+  getQwenModel(): string {
+    return this.getConfiguration().get("qwen.model", "qwen-plus");
+  }
+
+  getQwenBaseUrl(): string {
+    return this.getConfiguration().get("qwen.baseUrl", "https://dashscope-intl.aliyuncs.com/compatible-mode/v1");
   }
 
   async updateConfiguration(key: string, value: any, target?: vscode.ConfigurationTarget): Promise<void> {

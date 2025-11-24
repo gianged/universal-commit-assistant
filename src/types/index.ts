@@ -23,7 +23,8 @@ export type ProviderType =
   | "openrouter"
   | "ollama"
   | "lmstudio"
-  | "deepseek";
+  | "deepseek"
+  | "qwen";
 
 export interface ProviderConfig {
   type: ProviderType;

@@ -8,6 +8,7 @@ export class SecretManager {
     "universal-commit-assistant.mistral.apiKey",
     "universal-commit-assistant.deepseek.apiKey",
     "universal-commit-assistant.openrouter.apiKey",
+    "universal-commit-assistant.qwen.apiKey",
   ];
 
   constructor(private readonly secretStorage: vscode.SecretStorage) {}

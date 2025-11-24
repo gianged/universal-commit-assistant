@@ -6,9 +6,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Universal Commit Assistant** is a VS Code extension that generates AI-powered commit messages using multiple AI providers. The extension supports 8 languages and follows modern TypeScript development practices with automated release workflows.
 
-## Latest Updates (January 2025)
+## Latest Updates (November 2025)
 
-- **DeepSeek Provider Added**: Integration with DeepSeek-V3.1 models including deepseek-chat (fast general purpose) and deepseek-reasoner (thinking mode for complex tasks)
+- **Qwen Provider Added**: Integration with Alibaba Cloud DashScope API supporting Qwen Max, Qwen Plus, and Qwen Turbo models
+- **GPT-5.1 Models**: Updated OpenAI provider with GPT-5.1, GPT-5.1 Codex, and GPT-5.1 Codex Mini
+- **Gemini 3 Models**: Updated Google Gemini provider with Gemini 3 Pro (flagship) and preview models
 - **Enhanced Model Support**: Updated to support latest AI models from all major providers
 
 ## Development Commands
@@ -36,7 +38,7 @@ npm run release:dry-run  # Test release process without publishing
 
 ## Architecture Overview
 
-This is a VS Code extension called Universal Commit Assistant that generates AI-powered commit messages using multiple AI providers and supports 8 languages. As of January 2025, it supports 8 providers including the newly added DeepSeek provider.
+This is a VS Code extension called Universal Commit Assistant that generates AI-powered commit messages using multiple AI providers and supports 8 languages. As of November 2025, it supports 9 providers including OpenAI, Anthropic, Gemini, Mistral, DeepSeek, Qwen, OpenRouter, Ollama, and LM Studio.
 
 ### Core Architecture Pattern
 
@@ -65,7 +67,7 @@ All AI providers inherit from **BaseProvider** abstract class and implement:
 
 Provider types:
 
-- **Cloud providers** (OpenAI, Anthropic, Gemini, Mistral, DeepSeek, OpenRouter) - require API keys stored in VS Code secrets
+- **Cloud providers** (OpenAI, Anthropic, Gemini, Mistral, DeepSeek, Qwen, OpenRouter) - require API keys stored in VS Code secrets
 - **Local providers** (Ollama, LM Studio) - require running local servers, configurable base URLs
 
 Each provider implements standardized error handling and configuration validation to ensure robust operation.
@@ -91,14 +93,15 @@ src/
 ├── providers/            # AI provider implementations
 │   ├── aiProviderFactory.ts   # Factory for creating provider instances
 │   ├── baseProvider.ts        # Abstract base class
-│   ├── anthropicProvider.ts   # Claude 3.5 Haiku/Sonnet
+│   ├── anthropicProvider.ts   # Claude 4.5 Haiku/Sonnet/Opus
 │   ├── deepseekProvider.ts    # DeepSeek V3.1 models
-│   ├── geminiProvider.ts      # Google Gemini models
+│   ├── geminiProvider.ts      # Google Gemini 3 models
 │   ├── lmstudioProvider.ts    # Local LM Studio integration
 │   ├── mistralProvider.ts     # Mistral AI models
 │   ├── ollamaProvider.ts      # Local Ollama integration
-│   ├── openaiProvider.ts      # OpenAI GPT models
-│   └── openrouterProvider.ts  # OpenRouter proxy service
+│   ├── openaiProvider.ts      # OpenAI GPT-5.1 models
+│   ├── openrouterProvider.ts  # OpenRouter proxy service
+│   └── qwenProvider.ts        # Alibaba Qwen models
 ├── services/
 │   ├── gitCommitService.ts    # Main workflow orchestration
 │   ├── gitService.ts          # Git operations wrapper
@@ -146,15 +149,18 @@ Users configure the extension through VS Code settings UI or JSON. Core settings
 
 Provider-specific settings use nested structure:
 
-- Cloud providers: `universal-commit-assistant.openai.model`, `universal-commit-assistant.anthropic.model`, `universal-commit-assistant.deepseek.model`
+- Cloud providers: `universal-commit-assistant.openai.model`, `universal-commit-assistant.anthropic.model`, `universal-commit-assistant.deepseek.model`, `universal-commit-assistant.qwen.model`
 - Local providers: `universal-commit-assistant.ollama.baseUrl`, `universal-commit-assistant.lmstudio.model`
 
-### Latest AI Model Updates (September 2025)
+### Latest AI Model Updates (November 2025)
 
 **OpenAI Latest Models:**
 
-- **GPT-5 Mini** (gpt-5-mini) - Fast and cost-effective, released August 2025, 400K context window
-- **GPT-5** (gpt-5) - Flagship model with state-of-the-art reasoning and coding capabilities
+- **GPT-5.1** (gpt-5.1) - Latest model balancing intelligence and speed, released November 2025
+- **GPT-5.1 Codex** (gpt-5.1-codex) - Optimized for coding tasks
+- **GPT-5.1 Codex Mini** (gpt-5.1-codex-mini) - Fast coding model
+- **GPT-5 Mini** (gpt-5-mini) - Fast and cost-effective, 400K context window
+- **GPT-5** (gpt-5) - Full capability flagship model
 
 **Anthropic Latest Models:**
 
@@ -162,18 +168,25 @@ Provider-specific settings use nested structure:
 - **Claude Sonnet 4.5** (claude-sonnet-4-5-20250929) - Enhanced reasoning and coding capabilities, released September 2025
 - **Claude Opus 4.1** (claude-opus-4-1-20250805) - Most capable model with extended thinking, released August 2025
 
-**DeepSeek Latest Models (January 2025):**
+**Google Gemini Latest Models:**
+
+- **Gemini 3 Pro** (gemini-3-pro) - Latest flagship model with 1M context window, released November 2025
+- **Gemini 3 Pro Preview** (gemini-3-pro-preview-11-2025) - Preview version of Gemini 3
+- **Gemini 2.5 Flash** (gemini-2.5-flash) - Fast and cost-effective
+- **Gemini 2.5 Pro** (gemini-2.5-pro) - Advanced reasoning with thinking mode
+
+**DeepSeek Latest Models:**
 
 - **deepseek-chat** - DeepSeek-V3.1 Non-thinking Mode, fast general purpose model, 128K context
 - **deepseek-reasoner** - DeepSeek-V3.1 Thinking Mode, advanced reasoning for complex tasks, 128K context
-- **Pricing**: Competitive rates with cache hit/miss optimization
 - **API**: OpenAI-compatible API at https://api.deepseek.com
 
-**Google Gemini Latest Models:**
+**Qwen Latest Models (November 2025):**
 
-- **Gemini 2.5 Flash** - Most recent stable model with thinking capabilities
-- **Gemini 2.5 Pro** - State-of-the-art reasoning model leading in math and science benchmarks
-- **Gemini 2.5 Flash Image** - Advanced image generation and editing capabilities
+- **Qwen Plus** (qwen-plus) - Balanced performance and cost (recommended)
+- **Qwen Max** (qwen-max) - Most capable model
+- **Qwen Turbo** (qwen-turbo) - Fastest model with 1M context
+- **API**: OpenAI-compatible API at https://dashscope-intl.aliyuncs.com/compatible-mode/v1
 
 ## Development Best Practices
 
