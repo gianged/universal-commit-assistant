@@ -15,6 +15,7 @@ export class OllamaProvider extends BaseProvider {
     const systemPrompt = this.configManager.getSystemPrompt();
     const style = options?.style || this.configManager.getMessageStyle();
     const language = this.configManager.getLanguage();
+    const maxTokens = options?.maxTokens || (style === "detailed" ? 300 : this.configManager.getMaxTokens());
 
     const userPrompt = this.buildPrompt(changes, style, options?.customPrompt, language, options?.isFirstCommit);
     const fullPrompt = `${systemPrompt}\n\nUser request: ${userPrompt}\n\nPlease respond with ONLY the commit message, no explanations or additional text.`;
@@ -28,6 +29,7 @@ export class OllamaProvider extends BaseProvider {
           stream: false,
           options: {
             temperature: temperature,
+            num_predict: maxTokens,
           },
         },
         {

@@ -109,11 +109,14 @@ Complete configuration guide for customizing Universal Commit Assistant to your 
 
 ### OpenAI
 ```json
-"universal-commit-assistant.openai.model": "gpt-5-mini"
+"universal-commit-assistant.openai.model": "gpt-5.4"
 ```
 **Available Models**:
-- `gpt-5-mini`: Fast and cost-effective (recommended)
-- `gpt-5`: Flagship model with state-of-the-art capabilities
+- `gpt-5.4`: Latest model, best intelligence and speed (recommended)
+- `gpt-5.1`: Previous generation, excellent balance
+- `gpt-5.1-codex`: Optimized for coding tasks
+- `gpt-5-mini`: Fast and cost-effective
+- `gpt-5`: Previous flagship model
 
 ### Anthropic
 ```json
@@ -121,17 +124,18 @@ Complete configuration guide for customizing Universal Commit Assistant to your 
 ```
 **Popular Models**:
 - `claude-haiku-4-5-20251001`: Fast and cost-effective (recommended)
-- `claude-sonnet-4-5-20250929`: Enhanced reasoning and coding capabilities
-- `claude-opus-4-1-20250805`: Most capable with extended thinking
+- `claude-sonnet-4-6`: Enhanced reasoning and coding capabilities
+- `claude-opus-4-6`: Most capable with extended thinking
 
 ### Google Gemini
 ```json
-"universal-commit-assistant.gemini.model": "gemini-1.5-flash"
+"universal-commit-assistant.gemini.model": "gemini-3.1-pro-preview"
 ```
 **Popular Models**:
-- `gemini-1.5-flash`: Fast and efficient
-- `gemini-2.0-flash-exp`: Latest experimental model
-- `gemini-1.5-pro`: More capable version
+- `gemini-3.1-pro-preview`: Reasoning-first model with 1M context (recommended)
+- `gemini-3-flash-preview`: Fast with strong coding and reasoning
+- `gemini-3-pro`: Previous flagship (aliases to 3.1 Pro)
+- `gemini-2.5-flash`: Fast and cost-effective
 
 ### Mistral AI
 ```json
@@ -170,10 +174,10 @@ Complete configuration guide for customizing Universal Commit Assistant to your 
 
 ### OpenRouter
 ```json
-"universal-commit-assistant.openrouter.model": "openai/gpt-5-mini"
+"universal-commit-assistant.openrouter.model": "openai/gpt-5.4"
 ```
 **Popular Models**:
-- `openai/gpt-5-mini`: OpenAI via OpenRouter
+- `openai/gpt-5.4`: OpenAI via OpenRouter
 - `anthropic/claude-haiku-4-5`: Anthropic via OpenRouter
 - `google/gemini-2.0-flash-exp`: Google via OpenRouter
 - `qwen/qwen-2.5-coder-32b-instruct`: Specialized coding model
@@ -207,7 +211,7 @@ Access via Command Palette (`Ctrl+Shift+P`):
 }
 ```
 
-### Detailed Commits with GPT-5
+### Detailed Commits with GPT-5.4
 ```json
 {
   "universal-commit-assistant.provider": "openai",
@@ -215,7 +219,7 @@ Access via Command Palette (`Ctrl+Shift+P`):
   "universal-commit-assistant.temperature": 0.4,
   "universal-commit-assistant.maxTokens": 200,
   "universal-commit-assistant.language": "english",
-  "universal-commit-assistant.openai.model": "gpt-5"
+  "universal-commit-assistant.openai.model": "gpt-5.4"
 }
 ```
 
@@ -237,7 +241,7 @@ Access via Command Palette (`Ctrl+Shift+P`):
   "universal-commit-assistant.messageStyle": "conventional",
   "universal-commit-assistant.language": "chinese",
   "universal-commit-assistant.temperature": 0.3,
-  "universal-commit-assistant.gemini.model": "gemini-1.5-flash"
+  "universal-commit-assistant.gemini.model": "gemini-3.1-pro-preview"
 }
 ```
 
@@ -287,12 +291,12 @@ Access via Command Palette (`Ctrl+Shift+P`):
 
 #### Faster Responses
 - Use local providers (Ollama/LM Studio)
-- Choose faster models (gpt-5-mini, claude-haiku-4-5)
+- Choose faster models (gpt-5.4, claude-haiku-4-5)
 - Reduce maxTokens for shorter messages
 - Set lower temperature for more deterministic output
 
 #### Better Quality
-- Use premium models (gpt-5, claude-sonnet-4-5, claude-opus-4-1)
+- Use premium models (gpt-5.4, claude-sonnet-4-6, claude-opus-4-6)
 - Include unstaged changes for more context
 - Customize system prompt for your coding style
 - Use detailed message style for complex changes

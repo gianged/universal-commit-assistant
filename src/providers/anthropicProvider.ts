@@ -45,8 +45,9 @@ export class AnthropicProvider extends BaseProvider {
           headers: {
             "x-api-key": apiKey,
             "Content-Type": "application/json",
-            "anthropic-version": "2023-06-01",
+            "anthropic-version": "2024-10-22",
           },
+          timeout: 30000,
         }
       );
 

@@ -57,7 +57,7 @@ export class RetryHandler {
     const finalErrorMessage = `${operationName} failed after ${maxAttempts} attempts. Last error: ${lastError?.message}`;
     this.logger.error(finalErrorMessage, lastError);
 
-    vscode.window
+    void vscode.window
       .showErrorMessage(`${operationName} failed after ${maxAttempts} attempts. Check output for details.`, "Show Logs")
       .then((selection) => {
         if (selection === "Show Logs") {

@@ -40,12 +40,8 @@ export class ConfigurationManager {
     return this.getConfiguration().get("language", "english") as Language;
   }
 
-  getEnableAnalytics(): boolean {
-    return this.getConfiguration().get("enableAnalytics", false);
-  }
-
   getMaxDiffLength(): number {
-    return this.getConfiguration().get("maxDiffLength", 3000);
+    return this.getConfiguration().get("maxDiffLength", 100000);
   }
 
   getDetectFirstCommit(): boolean {
@@ -53,7 +49,7 @@ export class ConfigurationManager {
   }
 
   getOpenAIModel(): string {
-    return this.getConfiguration().get("openai.model", "gpt-5.1");
+    return this.getConfiguration().get("openai.model", "gpt-5.4");
   }
 
   getAnthropicModel(): string {
@@ -61,7 +57,7 @@ export class ConfigurationManager {
   }
 
   getGeminiModel(): string {
-    return this.getConfiguration().get("gemini.model", "gemini-3-pro");
+    return this.getConfiguration().get("gemini.model", "gemini-3.1-pro-preview");
   }
 
   getMistralModel(): string {
@@ -85,7 +81,7 @@ export class ConfigurationManager {
   }
 
   getOpenRouterModel(): string {
-    return this.getConfiguration().get("openrouter.model", "openai/gpt-5.1");
+    return this.getConfiguration().get("openrouter.model", "openai/gpt-5.4");
   }
 
   getDeepSeekModel(): string {
@@ -100,8 +96,4 @@ export class ConfigurationManager {
     return this.getConfiguration().get("qwen.baseUrl", "https://dashscope-intl.aliyuncs.com/compatible-mode/v1");
   }
 
-  async updateConfiguration(key: string, value: any, target?: vscode.ConfigurationTarget): Promise<void> {
-    const config = this.getConfiguration();
-    await config.update(key, value, target || vscode.ConfigurationTarget.Global);
-  }
 }

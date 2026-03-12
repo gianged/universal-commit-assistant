@@ -22,6 +22,7 @@ export class GeminiProvider extends BaseProvider {
     const style = options?.style || this.configManager.getMessageStyle();
     const language = this.configManager.getLanguage();
 
+    const maxTokens = options?.maxTokens || (style === "detailed" ? 300 : this.configManager.getMaxTokens());
     const userPrompt = this.buildPrompt(changes, style, options?.customPrompt, language, options?.isFirstCommit);
     const fullPrompt = `${systemPrompt}\n\nUser request: ${userPrompt}\n\nPlease respond with ONLY the commit message, no explanations or additional text.`;
 
@@ -40,6 +41,7 @@ export class GeminiProvider extends BaseProvider {
           ],
           generationConfig: {
             temperature: temperature,
+            maxOutputTokens: maxTokens,
           },
         },
         {
@@ -47,6 +49,7 @@ export class GeminiProvider extends BaseProvider {
             "x-goog-api-key": apiKey,
             "Content-Type": "application/json",
           },
+          timeout: 30000,
         }
       );
 

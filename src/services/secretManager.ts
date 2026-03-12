@@ -65,9 +65,4 @@ export class SecretManager {
     }
   }
 
-  async clearSpecificSecret(provider: string): Promise<void> {
-    const key = `universal-commit-assistant.${provider}.apiKey`;
-    await this.secretStorage.delete(key);
-    vscode.window.showInformationMessage(`${provider.toUpperCase()} API key has been cleared.`);
-  }
 }

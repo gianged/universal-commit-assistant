@@ -2,6 +2,7 @@ import * as vscode from "vscode";
 
 import { AIProviderFactory } from "../providers/aiProviderFactory";
 import { ConfigurationManager } from "../utils/configurationManager";
+import { GitChanges } from "../types";
 import { GitService } from "./gitService";
 import { Logger } from "../utils/logger";
 import { RetryHandler } from "../utils/retryHandler";
@@ -35,75 +36,65 @@ export class GitCommitService {
   }
 
   private async performCommitMessageGeneration(): Promise<void> {
-    return new Promise((resolve, reject) => {
-      vscode.window.withProgress(
-        {
-          location: vscode.ProgressLocation.Notification,
-          title: "Generating commit message...",
-          cancellable: false,
-        },
-        async (progress) => {
-          try {
-            progress.report({ increment: 20, message: "Getting git changes..." });
+    return vscode.window.withProgress(
+      {
+        location: vscode.ProgressLocation.Notification,
+        title: "Generating commit message...",
+        cancellable: false,
+      },
+      async (progress) => {
+        progress.report({ increment: 20, message: "Getting git changes..." });
 
-            // Check if this is the first commit (if feature is enabled)
-            const detectFirstCommit = this.configManager.getDetectFirstCommit();
-            const isFirstCommit = detectFirstCommit && (await this.gitService.isFirstCommit());
+        // Check if this is the first commit (if feature is enabled)
+        const detectFirstCommit = this.configManager.getDetectFirstCommit();
+        const isFirstCommit = detectFirstCommit && (await this.gitService.isFirstCommit());
 
-            // Smart fallback: try staged first, then unstaged if no staged files
-            let changes = await this.gitService.getChanges(false); // Get only staged changes first
+        // Smart fallback: try staged first, then unstaged if no staged files
+        let changes = await this.gitService.getChanges(false); // Get only staged changes first
 
-            if (changes.staged.length === 0) {
-              // No staged changes, fallback to unstaged
-              changes = await this.gitService.getChanges(true);
+        if (changes.staged.length === 0) {
+          // No staged changes, fallback to unstaged
+          changes = await this.gitService.getChanges(true);
 
-              if (changes.unstaged.length === 0) {
-                throw new Error("No changes found to commit");
-              }
-            }
-
-            progress.report({ increment: 40, message: "Preparing AI provider..." });
-
-            const provider = await this.providerFactory.createProvider();
-
-            const isConfigValid = await provider.validateConfiguration();
-            if (!isConfigValid) {
-              throw new Error("Provider configuration is invalid. Please check your settings.");
-            }
-
-            progress.report({ increment: 60, message: "Generating commit message..." });
-
-            const changesText = this.formatChanges(changes);
-            const commitMessage = await provider.generateCommitMessage(changesText, {
-              style: this.configManager.getMessageStyle(),
-              maxTokens: this.configManager.getMaxTokens(),
-              customPrompt: this.configManager.getCustomPrompt(),
-              temperature: this.configManager.getTemperature(),
-              systemPrompt: this.configManager.getSystemPrompt(),
-              isFirstCommit,
-            });
-
-            progress.report({ increment: 80, message: "Setting commit message..." });
-
-            await this.setCommitMessage(commitMessage);
-
-            progress.report({ increment: 100, message: "Complete!" });
-
-            this.logger.info(`Commit message generated successfully: "${commitMessage}"`);
-            vscode.window.showInformationMessage(`Commit message generated: "${commitMessage}"`);
-
-            resolve();
-          } catch (error) {
-            const errorObj = error instanceof Error ? error : new Error(String(error));
-            this.logger.error("Error during commit message generation", errorObj);
-            reject(errorObj);
+          if (changes.unstaged.length === 0) {
+            throw new Error("No changes found to commit");
           }
         }
-      );
-    });
+
+        progress.report({ increment: 20, message: "Preparing AI provider..." });
+
+        const provider = await this.providerFactory.createProvider();
+
+        const isConfigValid = await provider.validateConfiguration();
+        if (!isConfigValid) {
+          throw new Error("Provider configuration is invalid. Please check your settings.");
+        }
+
+        progress.report({ increment: 20, message: "Generating commit message..." });
+
+        const changesText = this.formatChanges(changes);
+        const commitMessage = await provider.generateCommitMessage(changesText, {
+          style: this.configManager.getMessageStyle(),
+          maxTokens: this.configManager.getMaxTokens(),
+          customPrompt: this.configManager.getCustomPrompt(),
+          temperature: this.configManager.getTemperature(),
+          systemPrompt: this.configManager.getSystemPrompt(),
+          isFirstCommit,
+        });
+
+        progress.report({ increment: 10, message: "Setting commit message..." });
+
+        await this.setCommitMessage(commitMessage);
+
+        progress.report({ increment: 30, message: "Complete!" });
+
+        this.logger.info(`Commit message generated successfully: "${commitMessage}"`);
+        vscode.window.showInformationMessage(`Commit message generated: "${commitMessage}"`);
+      }
+    );
   }
 
-  private formatChanges(changes: any): string {
+  private formatChanges(changes: GitChanges): string {
     let formatted = "";
 
     if (changes.statistics) {
@@ -136,7 +127,7 @@ export class GitCommitService {
 
     if (changes.diff && changes.diff !== "No changes detected") {
       formatted += "Diff:\n";
-      const maxDiffLength = this.configManager.getMaxDiffLength?.() || 3000;
+      const maxDiffLength = this.configManager.getMaxDiffLength();
       if (changes.diff.length > maxDiffLength) {
         formatted += this.gitService.smartTruncateDiff(changes.diff, maxDiffLength);
         formatted += "\n... (truncated for brevity)";

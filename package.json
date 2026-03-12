@@ -181,10 +181,10 @@
           },
           "universal-commit-assistant.maxDiffLength": {
             "type": "number",
-            "default": 3000,
+            "default": 100000,
             "minimum": 1000,
-            "maximum": 10000,
-            "description": "Maximum characters of git diff to send to AI (uses smart truncation for larger diffs)",
+            "maximum": 100000,
+            "description": "Maximum characters of git diff to send to AI for deep analysis (uses smart truncation for larger diffs)",
             "order": 8
           },
           "universal-commit-assistant.detectFirstCommit": {
@@ -206,8 +206,9 @@
         "properties": {
           "universal-commit-assistant.openai.model": {
             "type": "string",
-            "default": "gpt-5.1",
+            "default": "gpt-5.4",
             "enum": [
+              "gpt-5.4",
               "gpt-5.1",
               "gpt-5.1-codex",
               "gpt-5.1-codex-mini",
@@ -215,11 +216,12 @@
               "gpt-5"
             ],
             "enumDescriptions": [
-              "GPT-5.1 - Latest model balancing intelligence and speed (recommended)",
+              "GPT-5.4 - Latest model, best intelligence and speed (recommended)",
+              "GPT-5.1 - Previous generation, excellent balance",
               "GPT-5.1 Codex - Optimized for coding tasks",
               "GPT-5.1 Codex Mini - Fast coding model",
               "GPT-5 Mini - Fast and cost-effective",
-              "GPT-5 - Full capability flagship model"
+              "GPT-5 - Previous flagship model"
             ],
             "description": "OpenAI model to use"
           },
@@ -228,28 +230,30 @@
             "default": "claude-haiku-4-5-20251001",
             "enum": [
               "claude-haiku-4-5-20251001",
-              "claude-sonnet-4-5-20250929",
-              "claude-opus-4-1-20250805"
+              "claude-sonnet-4-6",
+              "claude-opus-4-6"
             ],
             "enumDescriptions": [
               "Claude Haiku 4.5 - Fast and cost-effective (recommended)",
-              "Claude Sonnet 4.5 - Enhanced reasoning and coding capabilities",
-              "Claude Opus 4.1 - Most capable model with extended thinking"
+              "Claude Sonnet 4.6 - Enhanced reasoning and coding capabilities",
+              "Claude Opus 4.6 - Most capable model with extended thinking"
             ],
             "description": "Anthropic model to use"
           },
           "universal-commit-assistant.gemini.model": {
             "type": "string",
-            "default": "gemini-3-pro",
+            "default": "gemini-3.1-pro-preview",
             "enum": [
+              "gemini-3.1-pro-preview",
+              "gemini-3-flash-preview",
               "gemini-3-pro",
-              "gemini-3-pro-preview-11-2025",
               "gemini-2.5-flash",
               "gemini-2.5-pro"
             ],
             "enumDescriptions": [
-              "Gemini 3 Pro - Latest flagship model with 1M context (recommended)",
-              "Gemini 3 Pro Preview - Preview version of Gemini 3",
+              "Gemini 3.1 Pro - Reasoning-first model with 1M context (recommended)",
+              "Gemini 3 Flash - Fast with strong coding and reasoning",
+              "Gemini 3 Pro - Previous flagship (now aliases to 3.1 Pro)",
               "Gemini 2.5 Flash - Fast and cost-effective",
               "Gemini 2.5 Pro - Advanced reasoning with thinking mode"
             ],
@@ -262,7 +266,7 @@
           },
           "universal-commit-assistant.openrouter.model": {
             "type": "string",
-            "default": "openai/gpt-5-mini",
+            "default": "openai/gpt-5.4",
             "description": "OpenRouter model to use"
           },
           "universal-commit-assistant.deepseek.model": {

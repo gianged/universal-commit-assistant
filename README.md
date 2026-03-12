@@ -45,9 +45,9 @@ Choose the provider that fits your needs and budget:
 
 | Provider          | Best For              | Latest Models                                |
 | ----------------- | --------------------- | -------------------------------------------- |
-| **OpenAI**        | General purpose       | GPT-5.1, GPT-5.1 Codex, GPT-5                |
-| **Anthropic**     | Code understanding    | Claude Haiku 4.5, Sonnet 4.5, Opus 4.1       |
-| **Google Gemini** | Fast responses        | Gemini 3 Pro, Gemini 2.5 Flash               |
+| **OpenAI**        | General purpose       | GPT-5.4, GPT-5.1, GPT-5.1 Codex, GPT-5       |
+| **Anthropic**     | Code understanding    | Claude Haiku 4.5, Sonnet 4.6, Opus 4.6       |
+| **Google Gemini** | Fast responses        | Gemini 3.1 Pro, Gemini 3 Flash                |
 | **Mistral**       | European compliance   | Mistral Small, Mistral Large                 |
 | **DeepSeek**      | Cost-effective        | DeepSeek-V3.1 Chat & Reasoner                |
 | **Qwen**          | Alibaba Cloud         | Qwen Max, Qwen Plus, Qwen Turbo              |
@@ -81,7 +81,7 @@ Access via `Settings` > `Extensions` > `Universal Commit Assistant`:
 
 - **Temperature**: Control creativity (0 = consistent, 2 = creative)
 - **Max Tokens**: Message length limit (100-500)
-- **Max Diff Length**: Maximum characters of git diff to send to AI (1000-10000, default: 3000)
+- **Max Diff Length**: Maximum characters of git diff to send to AI (1000-100000, default: 100000)
 - **Detect First Commit**: Automatically detect and generate appropriate initial commit messages (default: enabled)
 - **Custom Prompt**: Override default instructions
 
@@ -164,18 +164,18 @@ Based on enhanced analysis (~2,500 input tokens + 150 output tokens average):
 
 | Provider             | Model              | Cost per Commit | Cost per 100 Commits |
 | -------------------- | ------------------ | --------------- | -------------------- |
-| **OpenAI**           | GPT-5.1            | ~$0.0008        | ~$0.08               |
+| **OpenAI**           | GPT-5.4            | ~$0.0008        | ~$0.08               |
 | **OpenAI**           | GPT-5.1 Codex      | ~$0.005         | ~$0.50               |
 | **Anthropic**        | Claude Haiku 4.5   | ~$0.003         | ~$0.30               |
-| **Anthropic**        | Claude Sonnet 4.5  | ~$0.010         | ~$1.00               |
+| **Anthropic**        | Claude Sonnet 4.6  | ~$0.010         | ~$1.00               |
 | **DeepSeek**         | deepseek-chat      | ~$0.0009        | ~$0.09               |
-| **Gemini**           | Gemini 3 Pro       | ~$0.0003        | ~$0.03               |
+| **Gemini**           | Gemini 3.1 Pro     | ~$0.0003        | ~$0.03               |
 | **Qwen**             | Qwen Plus          | ~$0.0006        | ~$0.06               |
 | **Ollama/LM Studio** | Local Models       | **FREE**        | **FREE**             |
 
 ### Cost Optimization Tips
 
-1. **Use Cost-Effective Providers**: Gemini 3 Pro, DeepSeek, Qwen, and GPT-5.1 offer excellent quality at low cost
+1. **Use Cost-Effective Providers**: Gemini 3 Pro, DeepSeek, Qwen, and GPT-5.4 offer excellent quality at low cost
 2. **Adjust Max Diff Length**: Reduce `maxDiffLength` to 2000 for simpler commits
 3. **Local Models**: Use Ollama or LM Studio for completely free operation
 4. **Smart Defaults**: The extension uses intelligent truncation to minimize tokens while preserving context

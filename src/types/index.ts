@@ -26,13 +26,6 @@ export type ProviderType =
   | "deepseek"
   | "qwen";
 
-export interface ProviderConfig {
-  type: ProviderType;
-  apiKey?: string;
-  model: string;
-  baseUrl?: string;
-}
-
 export interface GitStatistics {
   filesChanged: number;
   additions: number;
@@ -47,8 +40,3 @@ export interface GitChanges {
   statistics?: GitStatistics;
 }
 
-export interface SecretStorage {
-  store(key: string, value: string): Promise<void>;
-  get(key: string): Promise<string | undefined>;
-  delete(key: string): Promise<void>;
-}

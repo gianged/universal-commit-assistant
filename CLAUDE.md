@@ -6,12 +6,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **Universal Commit Assistant** is a VS Code extension that generates AI-powered commit messages using multiple AI providers. The extension supports 8 languages and follows modern TypeScript development practices with automated release workflows.
 
-## Latest Updates (November 2025)
+## Latest Updates (March 2026)
 
-- **Qwen Provider Added**: Integration with Alibaba Cloud DashScope API supporting Qwen Max, Qwen Plus, and Qwen Turbo models
-- **GPT-5.1 Models**: Updated OpenAI provider with GPT-5.1, GPT-5.1 Codex, and GPT-5.1 Codex Mini
-- **Gemini 3 Models**: Updated Google Gemini provider with Gemini 3 Pro (flagship) and preview models
-- **Enhanced Model Support**: Updated to support latest AI models from all major providers
+- **Gemini 3.1 Pro & 3 Flash**: Added latest Google Gemini models with 1M context window
+- **Claude Opus 4.6 & Sonnet 4.6**: Updated Anthropic provider with latest Claude models
+- **GPT-5.4**: Added OpenAI GPT-5.4 as new default model
+- **Deep Analysis Default**: Increased maxDiffLength to 100k chars for comprehensive code analysis
+- **Code Cleanup**: Removed dead code, fixed progress bug, added cloud provider timeouts, added maxTokens to Gemini/Ollama
 
 ## Development Commands
 
@@ -93,13 +94,13 @@ src/
 ├── providers/            # AI provider implementations
 │   ├── aiProviderFactory.ts   # Factory for creating provider instances
 │   ├── baseProvider.ts        # Abstract base class
-│   ├── anthropicProvider.ts   # Claude 4.5 Haiku/Sonnet/Opus
+│   ├── anthropicProvider.ts   # Claude Haiku 4.5/Sonnet 4.6/Opus 4.6
 │   ├── deepseekProvider.ts    # DeepSeek V3.1 models
-│   ├── geminiProvider.ts      # Google Gemini 3 models
+│   ├── geminiProvider.ts      # Google Gemini 3.1/3/2.5 models
 │   ├── lmstudioProvider.ts    # Local LM Studio integration
 │   ├── mistralProvider.ts     # Mistral AI models
 │   ├── ollamaProvider.ts      # Local Ollama integration
-│   ├── openaiProvider.ts      # OpenAI GPT-5.1 models
+│   ├── openaiProvider.ts      # OpenAI GPT-5.4/5.1 models
 │   ├── openrouterProvider.ts  # OpenRouter proxy service
 │   └── qwenProvider.ts        # Alibaba Qwen models
 ├── services/
@@ -152,26 +153,28 @@ Provider-specific settings use nested structure:
 - Cloud providers: `universal-commit-assistant.openai.model`, `universal-commit-assistant.anthropic.model`, `universal-commit-assistant.deepseek.model`, `universal-commit-assistant.qwen.model`
 - Local providers: `universal-commit-assistant.ollama.baseUrl`, `universal-commit-assistant.lmstudio.model`
 
-### Latest AI Model Updates (November 2025)
+### Latest AI Model Updates (March 2026)
 
 **OpenAI Latest Models:**
 
-- **GPT-5.1** (gpt-5.1) - Latest model balancing intelligence and speed, released November 2025
+- **GPT-5.4** (gpt-5.4) - Latest model, best intelligence and speed (default)
+- **GPT-5.1** (gpt-5.1) - Previous generation, excellent balance
 - **GPT-5.1 Codex** (gpt-5.1-codex) - Optimized for coding tasks
 - **GPT-5.1 Codex Mini** (gpt-5.1-codex-mini) - Fast coding model
 - **GPT-5 Mini** (gpt-5-mini) - Fast and cost-effective, 400K context window
-- **GPT-5** (gpt-5) - Full capability flagship model
+- **GPT-5** (gpt-5) - Previous flagship model
 
 **Anthropic Latest Models:**
 
-- **Claude Haiku 4.5** (claude-haiku-4-5-20251001) - Fast and cost-effective, released October 2025, 200K context window
-- **Claude Sonnet 4.5** (claude-sonnet-4-5-20250929) - Enhanced reasoning and coding capabilities, released September 2025
-- **Claude Opus 4.1** (claude-opus-4-1-20250805) - Most capable model with extended thinking, released August 2025
+- **Claude Haiku 4.5** (claude-haiku-4-5-20251001) - Fast and cost-effective (default), 200K context window
+- **Claude Sonnet 4.6** (claude-sonnet-4-6) - Enhanced reasoning and coding capabilities
+- **Claude Opus 4.6** (claude-opus-4-6) - Most capable model with extended thinking
 
 **Google Gemini Latest Models:**
 
-- **Gemini 3 Pro** (gemini-3-pro) - Latest flagship model with 1M context window, released November 2025
-- **Gemini 3 Pro Preview** (gemini-3-pro-preview-11-2025) - Preview version of Gemini 3
+- **Gemini 3.1 Pro** (gemini-3.1-pro-preview) - Reasoning-first model with 1M context (default)
+- **Gemini 3 Flash** (gemini-3-flash-preview) - Fast with strong coding and reasoning
+- **Gemini 3 Pro** (gemini-3-pro) - Previous flagship (now aliases to 3.1 Pro)
 - **Gemini 2.5 Flash** (gemini-2.5-flash) - Fast and cost-effective
 - **Gemini 2.5 Pro** (gemini-2.5-pro) - Advanced reasoning with thinking mode
 
