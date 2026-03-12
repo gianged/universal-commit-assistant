@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/gianged/universal-commit-assistant/compare/v1.5.0...v1.6.0) (2026-03-12)
+
+
+### Features
+
+* Update AI model support and configuration options across providers ([fab299d](https://github.com/gianged/universal-commit-assistant/commit/fab299dc0eeae847ba2c38571c85c066c8db08a8))
+
 # [1.5.0](https://github.com/gianged/universal-commit-assistant/compare/v1.4.0...v1.5.0) (2025-11-24)
 
 
