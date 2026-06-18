@@ -41,7 +41,7 @@ export class LMStudioProvider extends BaseProvider {
           headers: {
             "Content-Type": "application/json",
           },
-          timeout: 30000,
+          timeout: this.configManager.getRequestTimeout(),
         }
       );
 

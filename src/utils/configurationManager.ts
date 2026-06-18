@@ -96,4 +96,8 @@ export class ConfigurationManager {
     return this.getConfiguration().get("qwen.baseUrl", "https://dashscope-intl.aliyuncs.com/compatible-mode/v1");
   }
 
+  getRequestTimeout(): number {
+    return this.getConfiguration().get("requestTimeout", 60000);
+  }
+
 }

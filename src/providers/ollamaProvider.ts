@@ -36,7 +36,7 @@ export class OllamaProvider extends BaseProvider {
           headers: {
             "Content-Type": "application/json",
           },
-          timeout: 30000,
+          timeout: this.configManager.getRequestTimeout(),
         }
       );
 

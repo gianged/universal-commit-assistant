@@ -175,7 +175,7 @@
             "type": "number",
             "default": 200,
             "minimum": 100,
-            "maximum": 500,
+            "maximum": 500000,
             "description": "Maximum tokens for generated commit messages",
             "order": 7
           },
@@ -198,6 +198,14 @@
             "default": false,
             "description": "Enable usage analytics (no sensitive data is collected)",
             "order": 10
+          },
+          "universal-commit-assistant.requestTimeout": {
+            "type": "number",
+            "default": 60000,
+            "minimum": 1000,
+            "maximum": 300000,
+            "description": "Request timeout in milliseconds for AI provider API calls (increase for slower local models)",
+            "order": 11
           }
         }
       },

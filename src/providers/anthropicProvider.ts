@@ -47,7 +47,7 @@ export class AnthropicProvider extends BaseProvider {
             "Content-Type": "application/json",
             "anthropic-version": "2024-10-22",
           },
-          timeout: 30000,
+          timeout: this.configManager.getRequestTimeout(),
         }
       );
 

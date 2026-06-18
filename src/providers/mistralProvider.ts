@@ -49,7 +49,7 @@ export class MistralProvider extends BaseProvider {
             Authorization: `Bearer ${apiKey}`,
             "Content-Type": "application/json",
           },
-          timeout: 30000,
+          timeout: this.configManager.getRequestTimeout(),
         }
       );
 
