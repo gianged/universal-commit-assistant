@@ -52,7 +52,7 @@ export class OpenRouterProvider extends BaseProvider {
             "HTTP-Referer": "https://github.com/gianged/universal-commit-assistant",
             "X-Title": "Universal Commit Assistant",
           },
-          timeout: 30000,
+          timeout: this.configManager.getRequestTimeout(),
         }
       );
 

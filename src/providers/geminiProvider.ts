@@ -49,7 +49,7 @@ export class GeminiProvider extends BaseProvider {
             "x-goog-api-key": apiKey,
             "Content-Type": "application/json",
           },
-          timeout: 30000,
+          timeout: this.configManager.getRequestTimeout(),
         }
       );
 
