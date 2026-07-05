@@ -346,6 +346,7 @@
     "@types/node": "24.8.1",
     "@types/vscode": "^1.95.0",
     "@vscode/vsce": "^3.6.2",
+    "conventional-changelog-conventionalcommits": "^10.2.1",
     "semantic-release": "^25.0.0",
     "ts-loader": "^9.5.4",
     "typescript": "^5.9.3",
