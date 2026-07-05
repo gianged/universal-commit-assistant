@@ -2,7 +2,7 @@
   "name": "universal-commit-assistant",
   "displayName": "Universal Commit Assistant",
   "version": "1.6.0",
-  "description": "Universal AI-powered commit message generator supporting multiple providers and languages (OpenAI, Anthropic, Gemini, Mistral, DeepSeek, Qwen, Ollama, LM Studio, OpenRouter)",
+  "description": "Universal AI-powered commit message generator supporting multiple providers and languages (OpenAI, Anthropic, Gemini, Mistral, DeepSeek, Ollama, LM Studio, OpenRouter)",
   "categories": [
     "Other",
     "Machine Learning",
@@ -17,7 +17,6 @@
     "gemini",
     "mistral",
     "deepseek",
-    "qwen",
     "ollama",
     "automation",
     "assistant",
@@ -88,7 +87,6 @@
               "gemini",
               "mistral",
               "deepseek",
-              "qwen",
               "openrouter",
               "ollama",
               "lmstudio"
@@ -99,7 +97,6 @@
               "Google Gemini models",
               "Mistral AI models",
               "DeepSeek models",
-              "Alibaba Qwen models",
               "OpenRouter proxy service",
               "Local Ollama instance",
               "Local LM Studio instance"
@@ -206,109 +203,95 @@
         "properties": {
           "universal-commit-assistant.openai.model": {
             "type": "string",
-            "default": "gpt-5.4",
+            "default": "gpt-5.4-mini",
             "enum": [
+              "gpt-5.4-mini",
+              "gpt-5.4-nano",
               "gpt-5.4",
-              "gpt-5.1",
-              "gpt-5.1-codex",
-              "gpt-5.1-codex-mini",
-              "gpt-5-mini",
-              "gpt-5"
+              "gpt-5.5",
+              "gpt-5.3-codex"
             ],
             "enumDescriptions": [
-              "GPT-5.4 - Latest model, best intelligence and speed (recommended)",
-              "GPT-5.1 - Previous generation, excellent balance",
-              "GPT-5.1 Codex - Optimized for coding tasks",
-              "GPT-5.1 Codex Mini - Fast coding model",
-              "GPT-5 Mini - Fast and cost-effective",
-              "GPT-5 - Previous flagship model"
+              "GPT-5.4 Mini - Fast and cost-effective (recommended)",
+              "GPT-5.4 Nano - Cheapest and fastest",
+              "GPT-5.4 - Strong general purpose model",
+              "GPT-5.5 - Latest flagship model",
+              "GPT-5.3 Codex - Optimized for coding tasks"
             ],
             "description": "OpenAI model to use"
           },
           "universal-commit-assistant.anthropic.model": {
             "type": "string",
-            "default": "claude-haiku-4-5-20251001",
+            "default": "claude-haiku-4-5",
             "enum": [
-              "claude-haiku-4-5-20251001",
+              "claude-haiku-4-5",
+              "claude-sonnet-5",
               "claude-sonnet-4-6",
-              "claude-opus-4-6"
+              "claude-opus-4-8"
             ],
             "enumDescriptions": [
               "Claude Haiku 4.5 - Fast and cost-effective (recommended)",
-              "Claude Sonnet 4.6 - Enhanced reasoning and coding capabilities",
-              "Claude Opus 4.6 - Most capable model with extended thinking"
+              "Claude Sonnet 5 - Near-Opus coding quality at mid-tier price",
+              "Claude Sonnet 4.6 - Previous Sonnet generation",
+              "Claude Opus 4.8 - Most capable model"
             ],
             "description": "Anthropic model to use"
           },
           "universal-commit-assistant.gemini.model": {
             "type": "string",
-            "default": "gemini-3.1-pro-preview",
+            "default": "gemini-3.1-flash-lite",
             "enum": [
+              "gemini-3.1-flash-lite",
+              "gemini-3.5-flash",
               "gemini-3.1-pro-preview",
-              "gemini-3-flash-preview",
-              "gemini-3-pro",
               "gemini-2.5-flash",
               "gemini-2.5-pro"
             ],
             "enumDescriptions": [
-              "Gemini 3.1 Pro - Reasoning-first model with 1M context (recommended)",
-              "Gemini 3 Flash - Fast with strong coding and reasoning",
-              "Gemini 3 Pro - Previous flagship (now aliases to 3.1 Pro)",
-              "Gemini 2.5 Flash - Fast and cost-effective",
-              "Gemini 2.5 Pro - Advanced reasoning with thinking mode"
+              "Gemini 3.1 Flash Lite - Cheap and fast, free tier available (recommended)",
+              "Gemini 3.5 Flash - Fast with strong coding and reasoning",
+              "Gemini 3.1 Pro - Reasoning-first model with 1M context (no free tier)",
+              "Gemini 2.5 Flash - Previous generation, fast and cost-effective",
+              "Gemini 2.5 Pro - Previous generation, advanced reasoning"
             ],
             "description": "Gemini model to use"
           },
           "universal-commit-assistant.mistral.model": {
             "type": "string",
             "default": "mistral-small-latest",
+            "enum": [
+              "mistral-small-latest",
+              "ministral-8b-latest",
+              "mistral-medium-latest",
+              "mistral-large-latest",
+              "codestral-latest"
+            ],
+            "enumDescriptions": [
+              "Mistral Small - Balanced performance and cost, 256k context (recommended)",
+              "Ministral 8B - Cheapest and fastest",
+              "Mistral Medium - Frontier-class model",
+              "Mistral Large - Most capable model",
+              "Codestral - Optimized for coding tasks"
+            ],
             "description": "Mistral model to use"
           },
           "universal-commit-assistant.openrouter.model": {
             "type": "string",
-            "default": "openai/gpt-5.4",
-            "description": "OpenRouter model to use"
+            "default": "google/gemini-3.1-flash-lite",
+            "description": "OpenRouter model to use (e.g. anthropic/claude-haiku-4.5, deepseek/deepseek-v4-flash, openrouter/auto)"
           },
           "universal-commit-assistant.deepseek.model": {
             "type": "string",
-            "default": "deepseek-chat",
+            "default": "deepseek-v4-flash",
             "enum": [
-              "deepseek-chat",
-              "deepseek-reasoner"
+              "deepseek-v4-flash",
+              "deepseek-v4-pro"
             ],
             "enumDescriptions": [
-              "DeepSeek-V3.1 (Non-thinking Mode) - Fast general purpose model",
-              "DeepSeek-V3.1 (Thinking Mode) - Reasoning model for complex tasks"
+              "DeepSeek-V4 Flash - Fast and cost-effective, 1M context (recommended)",
+              "DeepSeek-V4 Pro - Most capable model"
             ],
             "description": "DeepSeek model to use"
-          },
-          "universal-commit-assistant.qwen.model": {
-            "type": "string",
-            "default": "qwen-plus",
-            "enum": [
-              "qwen-plus",
-              "qwen-max",
-              "qwen-turbo"
-            ],
-            "enumDescriptions": [
-              "Qwen Plus - Balanced performance and cost (recommended)",
-              "Qwen Max - Most capable model",
-              "Qwen Turbo - Fastest model with 1M context"
-            ],
-            "description": "Qwen model to use"
-          },
-          "universal-commit-assistant.qwen.baseUrl": {
-            "type": "string",
-            "default": "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
-            "enum": [
-              "https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
-              "https://dashscope.aliyuncs.com/compatible-mode/v1"
-            ],
-            "enumDescriptions": [
-              "International (Singapore) - For users outside China",
-              "China (Beijing) - For users in mainland China"
-            ],
-            "description": "Qwen DashScope API region"
           }
         }
       },
@@ -317,8 +300,8 @@
         "properties": {
           "universal-commit-assistant.ollama.model": {
             "type": "string",
-            "default": "llama3.2",
-            "description": "Ollama model to use"
+            "default": "qwen3.5:4b",
+            "description": "Ollama model to use (e.g. qwen3.5:4b, qwen3.5:9b, gemma4:12b, llama3.2)"
           },
           "universal-commit-assistant.ollama.baseUrl": {
             "type": "string",
@@ -327,8 +310,8 @@
           },
           "universal-commit-assistant.lmstudio.model": {
             "type": "string",
-            "default": "llama-3.1-8b-instruct",
-            "description": "LM Studio model to use"
+            "default": "qwen/qwen3.5-9b",
+            "description": "LM Studio model to use; must match a model loaded in LM Studio (see GET /v1/models)"
           },
           "universal-commit-assistant.lmstudio.baseUrl": {
             "type": "string",
@@ -352,7 +335,7 @@
     "onStartupFinished"
   ],
   "dependencies": {
-    "axios": "^1.12.2"
+    "axios": "1.15.2"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
@@ -366,7 +349,7 @@
     "semantic-release": "^25.0.0",
     "ts-loader": "^9.5.4",
     "typescript": "^5.9.3",
-    "webpack": "^5.102.1",
+    "webpack": "5.104.1",
     "webpack-cli": "^6.0.1"
   },
   "engines": {

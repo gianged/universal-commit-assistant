@@ -23,8 +23,7 @@ export type ProviderType =
   | "openrouter"
   | "ollama"
   | "lmstudio"
-  | "deepseek"
-  | "qwen";
+  | "deepseek";
 
 export interface GitStatistics {
   filesChanged: number;

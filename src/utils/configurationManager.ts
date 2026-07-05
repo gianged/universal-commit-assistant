@@ -49,15 +49,15 @@ export class ConfigurationManager {
   }
 
   getOpenAIModel(): string {
-    return this.getConfiguration().get("openai.model", "gpt-5.4");
+    return this.getConfiguration().get("openai.model", "gpt-5.4-mini");
   }
 
   getAnthropicModel(): string {
-    return this.getConfiguration().get("anthropic.model", "claude-haiku-4-5-20251001");
+    return this.getConfiguration().get("anthropic.model", "claude-haiku-4-5");
   }
 
   getGeminiModel(): string {
-    return this.getConfiguration().get("gemini.model", "gemini-3.1-pro-preview");
+    return this.getConfiguration().get("gemini.model", "gemini-3.1-flash-lite");
   }
 
   getMistralModel(): string {
@@ -65,7 +65,7 @@ export class ConfigurationManager {
   }
 
   getOllamaModel(): string {
-    return this.getConfiguration().get("ollama.model", "llama3.2");
+    return this.getConfiguration().get("ollama.model", "qwen3.5:4b");
   }
 
   getOllamaBaseUrl(): string {
@@ -77,23 +77,15 @@ export class ConfigurationManager {
   }
 
   getLMStudioModel(): string {
-    return this.getConfiguration().get("lmstudio.model", "llama-3.1-8b-instruct");
+    return this.getConfiguration().get("lmstudio.model", "qwen/qwen3.5-9b");
   }
 
   getOpenRouterModel(): string {
-    return this.getConfiguration().get("openrouter.model", "openai/gpt-5.4");
+    return this.getConfiguration().get("openrouter.model", "google/gemini-3.1-flash-lite");
   }
 
   getDeepSeekModel(): string {
-    return this.getConfiguration().get("deepseek.model", "deepseek-chat");
-  }
-
-  getQwenModel(): string {
-    return this.getConfiguration().get("qwen.model", "qwen-plus");
-  }
-
-  getQwenBaseUrl(): string {
-    return this.getConfiguration().get("qwen.baseUrl", "https://dashscope-intl.aliyuncs.com/compatible-mode/v1");
+    return this.getConfiguration().get("deepseek.model", "deepseek-v4-flash");
   }
 
 }

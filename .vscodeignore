@@ -19,9 +19,11 @@ webpack.config.js
 # Documentation and guides
 vsc-extension-quickstart.md
 .gitmessage
-CLAUDE.md
 PUBLISHING.md
 SETTINGS.md
+
+# Claude files
+.claude/
 
 # Dependencies and build artifacts
 node_modules

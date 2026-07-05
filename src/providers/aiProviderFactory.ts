@@ -10,7 +10,6 @@ import { MistralProvider } from "./mistralProvider";
 import { OllamaProvider } from "./ollamaProvider";
 import { OpenAIProvider } from "./openaiProvider";
 import { OpenRouterProvider } from "./openrouterProvider";
-import { QwenProvider } from "./qwenProvider";
 
 export class AIProviderFactory {
   constructor(
@@ -38,8 +37,6 @@ export class AIProviderFactory {
         return new LMStudioProvider(this.configManager);
       case "openrouter":
         return new OpenRouterProvider(this.configManager, this.context.secrets);
-      case "qwen":
-        return new QwenProvider(this.configManager, this.context.secrets);
       default:
         throw new Error(`Unsupported provider type: ${providerType}`);
     }

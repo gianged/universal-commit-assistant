@@ -2,7 +2,7 @@
 
 [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=gianged.universal-commit-assistant) | [Rate & Review](https://marketplace.visualstudio.com/items?itemName=gianged.universal-commit-assistant&ssr=false#review-details) | [Report Issues](https://github.com/gianged/universal-commit-assistant/issues)
 
-**Stop writing commit messages manually.** Let AI generate perfect commit messages for you instantly, with support for 9 AI providers and 8 languages, directly in VS Code.
+**Stop writing commit messages manually.** Let AI generate perfect commit messages for you instantly, with support for 8 AI providers and 8 languages, directly in VS Code.
 
 ---
 
@@ -43,15 +43,14 @@ Choose the provider that fits your needs and budget:
 
 ### Cloud Providers (API Key Required)
 
-| Provider          | Best For              | Latest Models                                |
-| ----------------- | --------------------- | -------------------------------------------- |
-| **OpenAI**        | General purpose       | GPT-5.4, GPT-5.1, GPT-5.1 Codex, GPT-5       |
-| **Anthropic**     | Code understanding    | Claude Haiku 4.5, Sonnet 4.6, Opus 4.6       |
-| **Google Gemini** | Fast responses        | Gemini 3.1 Pro, Gemini 3 Flash                |
-| **Mistral**       | European compliance   | Mistral Small, Mistral Large                 |
-| **DeepSeek**      | Cost-effective        | DeepSeek-V3.1 Chat & Reasoner                |
-| **Qwen**          | Alibaba Cloud         | Qwen Max, Qwen Plus, Qwen Turbo              |
-| **OpenRouter**    | Access to 100+ models | Meta Llama, Claude, GPT, and more            |
+| Provider          | Best For              | Latest Models                                 |
+| ----------------- | --------------------- | --------------------------------------------- |
+| **OpenAI**        | General purpose       | GPT-5.5, GPT-5.4 Mini, GPT-5.3 Codex          |
+| **Anthropic**     | Code understanding    | Claude Haiku 4.5, Sonnet 5, Opus 4.8          |
+| **Google Gemini** | Fast responses        | Gemini 3.1 Flash Lite, Gemini 3.5 Flash       |
+| **Mistral**       | European compliance   | Mistral Small, Mistral Medium, Codestral      |
+| **DeepSeek**      | Cost-effective        | DeepSeek-V4 Flash & Pro                       |
+| **OpenRouter**    | Access to 100+ models | Meta Llama, Claude, GPT, and more             |
 
 ### Local Providers (Privacy First)
 
@@ -162,20 +161,19 @@ Universal Commit Assistant is designed to be cost-effective while providing high
 
 Based on enhanced analysis (~2,500 input tokens + 150 output tokens average):
 
-| Provider             | Model              | Cost per Commit | Cost per 100 Commits |
-| -------------------- | ------------------ | --------------- | -------------------- |
-| **OpenAI**           | GPT-5.4            | ~$0.0008        | ~$0.08               |
-| **OpenAI**           | GPT-5.1 Codex      | ~$0.005         | ~$0.50               |
-| **Anthropic**        | Claude Haiku 4.5   | ~$0.003         | ~$0.30               |
-| **Anthropic**        | Claude Sonnet 4.6  | ~$0.010         | ~$1.00               |
-| **DeepSeek**         | deepseek-chat      | ~$0.0009        | ~$0.09               |
-| **Gemini**           | Gemini 3.1 Pro     | ~$0.0003        | ~$0.03               |
-| **Qwen**             | Qwen Plus          | ~$0.0006        | ~$0.06               |
-| **Ollama/LM Studio** | Local Models       | **FREE**        | **FREE**             |
+| Provider             | Model                 | Cost per Commit | Cost per 100 Commits |
+| -------------------- | --------------------- | --------------- | -------------------- |
+| **OpenAI**           | GPT-5.4 Mini          | ~$0.0009        | ~$0.09               |
+| **OpenAI**           | GPT-5.5               | ~$0.017         | ~$1.70               |
+| **Anthropic**        | Claude Haiku 4.5      | ~$0.003         | ~$0.30               |
+| **Anthropic**        | Claude Sonnet 5       | ~$0.010         | ~$1.00               |
+| **DeepSeek**         | DeepSeek-V4 Flash     | ~$0.0004        | ~$0.04               |
+| **Gemini**           | Gemini 3.1 Flash Lite | ~$0.0009        | ~$0.09               |
+| **Ollama/LM Studio** | Local Models          | **FREE**        | **FREE**             |
 
 ### Cost Optimization Tips
 
-1. **Use Cost-Effective Providers**: Gemini 3 Pro, DeepSeek, Qwen, and GPT-5.4 offer excellent quality at low cost
+1. **Use Cost-Effective Providers**: Gemini 3.1 Flash Lite, DeepSeek-V4 Flash, and GPT-5.4 Mini offer excellent quality at low cost
 2. **Adjust Max Diff Length**: Reduce `maxDiffLength` to 2000 for simpler commits
 3. **Local Models**: Use Ollama or LM Studio for completely free operation
 4. **Smart Defaults**: The extension uses intelligent truncation to minimize tokens while preserving context

@@ -14,7 +14,7 @@ Complete configuration guide for customizing Universal Commit Assistant to your 
 ```json
 "universal-commit-assistant.provider": "openai"
 ```
-**Options**: `openai`, `anthropic`, `gemini`, `mistral`, `ollama`, `lmstudio`, `openrouter`
+**Options**: `openai`, `anthropic`, `gemini`, `mistral`, `deepseek`, `openrouter`, `ollama`, `lmstudio`
 **Default**: `openai`
 **Description**: Choose which AI service generates your commit messages
 
@@ -109,61 +109,73 @@ Complete configuration guide for customizing Universal Commit Assistant to your 
 
 ### OpenAI
 ```json
-"universal-commit-assistant.openai.model": "gpt-5.4"
+"universal-commit-assistant.openai.model": "gpt-5.4-mini"
 ```
 **Available Models**:
-- `gpt-5.4`: Latest model, best intelligence and speed (recommended)
-- `gpt-5.1`: Previous generation, excellent balance
-- `gpt-5.1-codex`: Optimized for coding tasks
-- `gpt-5-mini`: Fast and cost-effective
-- `gpt-5`: Previous flagship model
+- `gpt-5.4-mini`: Fast and cost-effective (recommended)
+- `gpt-5.4-nano`: Cheapest and fastest
+- `gpt-5.4`: Strong general purpose model
+- `gpt-5.5`: Latest flagship model
+- `gpt-5.3-codex`: Optimized for coding tasks
 
 ### Anthropic
 ```json
-"universal-commit-assistant.anthropic.model": "claude-haiku-4-5-20251001"
+"universal-commit-assistant.anthropic.model": "claude-haiku-4-5"
 ```
 **Popular Models**:
-- `claude-haiku-4-5-20251001`: Fast and cost-effective (recommended)
-- `claude-sonnet-4-6`: Enhanced reasoning and coding capabilities
-- `claude-opus-4-6`: Most capable with extended thinking
+- `claude-haiku-4-5`: Fast and cost-effective (recommended)
+- `claude-sonnet-5`: Near-Opus coding quality at mid-tier price
+- `claude-sonnet-4-6`: Previous Sonnet generation
+- `claude-opus-4-8`: Most capable model
 
 ### Google Gemini
 ```json
-"universal-commit-assistant.gemini.model": "gemini-3.1-pro-preview"
+"universal-commit-assistant.gemini.model": "gemini-3.1-flash-lite"
 ```
 **Popular Models**:
-- `gemini-3.1-pro-preview`: Reasoning-first model with 1M context (recommended)
-- `gemini-3-flash-preview`: Fast with strong coding and reasoning
-- `gemini-3-pro`: Previous flagship (aliases to 3.1 Pro)
-- `gemini-2.5-flash`: Fast and cost-effective
+- `gemini-3.1-flash-lite`: Cheap and fast, free tier available (recommended)
+- `gemini-3.5-flash`: Fast with strong coding and reasoning
+- `gemini-3.1-pro-preview`: Reasoning-first model with 1M context (no free tier)
+- `gemini-2.5-flash`: Previous generation, fast and cost-effective
 
 ### Mistral AI
 ```json
 "universal-commit-assistant.mistral.model": "mistral-small-latest"
 ```
 **Popular Models**:
-- `mistral-small-latest`: Cost-effective option
-- `mistral-medium-latest`: Balanced performance
+- `mistral-small-latest`: Balanced performance and cost, 256k context (recommended)
+- `ministral-8b-latest`: Cheapest and fastest
+- `mistral-medium-latest`: Frontier-class model
 - `mistral-large-latest`: Most capable
+- `codestral-latest`: Optimized for coding tasks
+
+### DeepSeek
+```json
+"universal-commit-assistant.deepseek.model": "deepseek-v4-flash"
+```
+**Available Models**:
+- `deepseek-v4-flash`: Fast and cost-effective, 1M context (recommended)
+- `deepseek-v4-pro`: Most capable model
 
 ### Ollama (Local)
 ```json
-"universal-commit-assistant.ollama.model": "llama3.2",
+"universal-commit-assistant.ollama.model": "qwen3.5:4b",
 "universal-commit-assistant.ollama.baseUrl": "http://localhost:11434"
 ```
 **Popular Models**:
-- `llama3.2`: Latest Llama model
-- `codellama`: Optimized for code
-- `qwen2.5-coder`: Excellent for programming
-- `deepseek-coder`: Specialized for code understanding
+- `qwen3.5:4b`: Newest generation, light enough for consumer hardware (recommended)
+- `qwen3.5:9b`: Larger Qwen for better quality
+- `gemma4:12b`: Strong general model
+- `llama3.2`: Small and widely supported
 
 **Setup Requirements**:
 1. Install Ollama: https://ollama.ai
-2. Pull model: `ollama pull llama3.2`
+2. Pull model: `ollama pull qwen3.5:4b`
 3. Verify server: `curl http://localhost:11434/api/version`
 
 ### LM Studio (Local)
 ```json
+"universal-commit-assistant.lmstudio.model": "qwen/qwen3.5-9b",
 "universal-commit-assistant.lmstudio.baseUrl": "http://localhost:1234"
 ```
 **Setup Requirements**:
@@ -172,15 +184,17 @@ Complete configuration guide for customizing Universal Commit Assistant to your 
 3. Start local server
 4. Configure base URL if different from default
 
+The model setting must match a model loaded in LM Studio (check `GET http://localhost:1234/v1/models`).
+
 ### OpenRouter
 ```json
-"universal-commit-assistant.openrouter.model": "openai/gpt-5.4"
+"universal-commit-assistant.openrouter.model": "google/gemini-3.1-flash-lite"
 ```
 **Popular Models**:
-- `openai/gpt-5.4`: OpenAI via OpenRouter
-- `anthropic/claude-haiku-4-5`: Anthropic via OpenRouter
-- `google/gemini-2.0-flash-exp`: Google via OpenRouter
-- `qwen/qwen-2.5-coder-32b-instruct`: Specialized coding model
+- `google/gemini-3.1-flash-lite`: Cheap and fast (recommended)
+- `anthropic/claude-haiku-4.5`: Anthropic via OpenRouter
+- `deepseek/deepseek-v4-flash`: Cost-effective with 1M context
+- `openrouter/auto`: Automatic model routing
 
 ## 🔐 Secret Management
 
@@ -207,7 +221,7 @@ Access via Command Palette (`Ctrl+Shift+P`):
   "universal-commit-assistant.temperature": 0.2,
   "universal-commit-assistant.language": "english",
   "universal-commit-assistant.systemPrompt": "Generate conventional commit messages. Use types: feat, fix, docs, style, refactor, test, chore. Keep descriptions under 50 characters.",
-  "universal-commit-assistant.anthropic.model": "claude-haiku-4-5-20251001"
+  "universal-commit-assistant.anthropic.model": "claude-haiku-4-5"
 }
 ```
 
@@ -241,7 +255,7 @@ Access via Command Palette (`Ctrl+Shift+P`):
   "universal-commit-assistant.messageStyle": "conventional",
   "universal-commit-assistant.language": "chinese",
   "universal-commit-assistant.temperature": 0.3,
-  "universal-commit-assistant.gemini.model": "gemini-3.1-pro-preview"
+  "universal-commit-assistant.gemini.model": "gemini-3.1-flash-lite"
 }
 ```
 
@@ -291,12 +305,12 @@ Access via Command Palette (`Ctrl+Shift+P`):
 
 #### Faster Responses
 - Use local providers (Ollama/LM Studio)
-- Choose faster models (gpt-5.4, claude-haiku-4-5)
+- Choose faster models (gpt-5.4-mini, claude-haiku-4-5, gemini-3.1-flash-lite)
 - Reduce maxTokens for shorter messages
 - Set lower temperature for more deterministic output
 
 #### Better Quality
-- Use premium models (gpt-5.4, claude-sonnet-4-6, claude-opus-4-6)
+- Use premium models (gpt-5.5, claude-sonnet-5, claude-opus-4-8)
 - Include unstaged changes for more context
 - Customize system prompt for your coding style
 - Use detailed message style for complex changes

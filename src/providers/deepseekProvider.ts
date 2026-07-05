@@ -43,6 +43,8 @@ export class DeepSeekProvider extends BaseProvider {
           ],
           max_tokens: maxTokens,
           temperature: temperature,
+          // V4 defaults to thinking mode; disable it for fast plain output
+          thinking: { type: "disabled" },
         },
         {
           headers: {

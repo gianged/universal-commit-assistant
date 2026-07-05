@@ -25,3 +25,7 @@ node_modules
 # OS files
 Thumbs.db
 *.log
+
+# Claude files
+.claude
+plans/
